@@ -1,0 +1,1 @@
+export {useReadPersonalData} from './useReadPersonalData';

@@ -1,0 +1,15 @@
+# Node modules
+node_modules/
+
+# macOS system files
+.DS_Store
+
+# Build output
+build/
+DerivedData/
+Pods/
+
+# Xcode specific
+*.xcworkspace
+*.xcuserdata
+*.xcuserstate

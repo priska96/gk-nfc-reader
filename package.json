@@ -1,0 +1,19 @@
+{
+  "name": "gk-nfc-reader",
+  "version": "1.0.0",
+  "description": "Reads the Personal Data of eGK viw NFC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/priska96/gk-nfc-reader.git"
+  },
+  "author": "Priska Kohnen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/priska96/gk-nfc-reader/issues"
+  },
+  "homepage": "https://github.com/priska96/gk-nfc-reader#readme"
+}

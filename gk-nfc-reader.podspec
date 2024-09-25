@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "gk-nfc-reader"
-    s.version      = "1.0.4"
+    s.version      = "1.0.5"
     s.summary      = "Reads the Personal Data of eGK viw NFC"
     s.homepage     = "https://github.com/priska96/gk-nfc-reader"
     s.license      = "ISC"
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.source_files  = "ios/**/*.{h,m,swift}"
     s.dependency "React-Core"
 
-    s.vendored_frameworks = 'ios/OpenHealthCardKit.framework'
+    s.vendored_frameworks = 'ios/CardReaderAccess.framework', 'ios/CardReaderProvider.framework', 'ios/HealthCardAccess.framework', 'ios/HealthCardControl.framework', 'ios/Helper.framework', 'ios/NFCCardReaderProvider.framework', 'ios/Util.framework'
 
   end
   

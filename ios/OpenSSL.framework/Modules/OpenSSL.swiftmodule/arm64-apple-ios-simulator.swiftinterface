@@ -1,0 +1,326 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-module-flags: -target arm64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name OpenSSL
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import CryptoKit
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers @usableFromInline
+internal class BigNumber {
+  @objc deinit
+}
+extension OpenSSL.BigNumber : Swift.Equatable {
+  @inlinable internal static func == (lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.Bool {
+        compare(lhs: lhs, rhs: rhs) == 0
+    }
+}
+extension OpenSSL.BigNumber : Swift.Comparable {
+  @inlinable internal static func < (lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.Bool {
+        compare(lhs: lhs, rhs: rhs) < 0
+    }
+  @inlinable internal static func <= (lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.Bool {
+        compare(lhs: lhs, rhs: rhs) <= 0
+    }
+  @inlinable internal static func > (lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.Bool {
+        compare(lhs: lhs, rhs: rhs) > 0
+    }
+  @inlinable internal static func >= (lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.Bool {
+        compare(lhs: lhs, rhs: rhs) >= 0
+    }
+}
+extension OpenSSL.BigNumber {
+  @usableFromInline
+  internal static func compare(lhs: OpenSSL.BigNumber, rhs: OpenSSL.BigNumber) -> Swift.CInt
+}
+extension OpenSSL.BrainpoolP256r1 {
+  public enum KeyExchange {
+    public struct PublicKey : OpenSSL.ECPublicKey {
+      public init(compact: Foundation.Data) throws
+      public init(x962: Foundation.Data) throws
+      public func rawValue() throws -> Foundation.Data
+      public func x962Value() throws -> Foundation.Data
+      public func compactValue() throws -> Foundation.Data
+    }
+    public struct PrivateKey : OpenSSL.ECPrivateKey, OpenSSL.DiffieHellman, OpenSSL.PACE {
+      public init(raw: Foundation.Data) throws
+      public init(x962: Foundation.Data) throws
+      public var publicKey: OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey {
+        get
+      }
+      public func sharedSecret(with peerKey: OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey) throws -> Foundation.Data
+      public func paceMapNonce(nonce: Foundation.Data, peerKey1: OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey) throws -> (OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey, OpenSSL.BrainpoolP256r1.KeyExchange.PrivateKey)
+      public static func generateKey() throws -> OpenSSL.BrainpoolP256r1.KeyExchange.PrivateKey
+      public typealias PrivateKey = OpenSSL.BrainpoolP256r1.KeyExchange.PrivateKey
+      public typealias PublicKey = OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey
+    }
+    public static func generateKey() throws -> OpenSSL.BrainpoolP256r1.KeyExchange.PrivateKey
+  }
+}
+extension OpenSSL.BrainpoolP256r1 {
+  public enum Verify {
+    public struct PublicKey : OpenSSL.ECPublicKey, OpenSSL.SignatureVerifier {
+      public init(compact: Foundation.Data) throws
+      public init(x962: Foundation.Data) throws
+      public func rawValue() throws -> Foundation.Data
+      public func x962Value() throws -> Foundation.Data
+      public func compactValue() throws -> Foundation.Data
+      public func verify(signature: OpenSSL.BrainpoolP256r1.Verify.Signature, message: Foundation.Data) throws -> Swift.Bool
+      public typealias Signature = OpenSSL.BrainpoolP256r1.Verify.Signature
+    }
+    public struct PrivateKey : OpenSSL.ECPrivateKey, OpenSSL.Signer {
+      public init(raw: Foundation.Data) throws
+      public init(x962: Foundation.Data) throws
+      public var publicKey: OpenSSL.BrainpoolP256r1.Verify.PublicKey {
+        get
+      }
+      public func sign(message: Foundation.Data) throws -> OpenSSL.BrainpoolP256r1.Verify.Signature
+      public static func generateKey() throws -> OpenSSL.BrainpoolP256r1.Verify.PrivateKey
+      public typealias PublicKey = OpenSSL.BrainpoolP256r1.Verify.PublicKey
+      public typealias Signature = OpenSSL.BrainpoolP256r1.Verify.Signature
+    }
+    public struct Signature : OpenSSL.ECSignature {
+      public init(rawRepresentation: Foundation.Data) throws
+      public init(derRepresentation: Foundation.Data) throws
+      public var derRepresentation: Foundation.Data {
+        get
+      }
+      public var rawRepresentation: Foundation.Data {
+        get
+      }
+    }
+  }
+}
+public enum BrainpoolP256r1 {
+}
+public enum CMAC {
+}
+extension OpenSSL.CMAC {
+  public static func aes128cbc_bySteps(key: Foundation.Data, data: Foundation.Data) throws -> Foundation.Data
+  public static func aes128cbc(key: Foundation.Data, data: Foundation.Data) throws -> Foundation.Data
+}
+@_hasMissingDesignatedInitializers public class CMSContentInfo {
+  @objc deinit
+  public var derBytes: Foundation.Data? {
+    get
+  }
+  public static func encryptPartial(data: Foundation.Data) throws -> Self
+  public func addRecipientsRSAOnly(_ recipients: [OpenSSL.X509]) throws
+  public func final(data: Foundation.Data) throws
+}
+public protocol DiffieHellman {
+  associatedtype PublicKey
+  func sharedSecret(with peerKey: Self.PublicKey) throws -> Foundation.Data
+}
+public protocol ECPrivateKey {
+  associatedtype PublicKey : OpenSSL.ECPublicKey
+  init(x962: Foundation.Data) throws
+  init(raw: Foundation.Data) throws
+  var publicKey: Self.PublicKey { get }
+  static func generateKey() throws -> Self
+}
+public protocol ECPublicKey {
+  init(compact: Foundation.Data) throws
+  init(x962: Foundation.Data) throws
+  func rawValue() throws -> Foundation.Data
+  func x962Value() throws -> Foundation.Data
+  func compactValue() throws -> Foundation.Data
+}
+@_hasMissingDesignatedInitializers @usableFromInline
+internal class EllipticCurvePoint<Curve> where Curve : OpenSSL.ECCurve {
+  @objc deinit
+  @usableFromInline
+  internal init(multiplyWithBasePoint scalar: OpenSSL.BigNumber) throws
+}
+extension OpenSSL.EllipticCurvePoint {
+  @usableFromInline
+  internal func withPointPointer<T>(_ body: (Swift.OpaquePointer) throws -> T) rethrows -> T
+}
+@usableFromInline
+internal class FiniteBigNumberFieldArithmeticContext {
+  @usableFromInline
+  internal init(fieldSize: OpenSSL.BigNumber) throws
+  @objc deinit
+}
+extension OpenSSL.FiniteBigNumberFieldArithmeticContext {
+  @usableFromInline
+  internal func subtract(_ x: OpenSSL.BigNumber, from y: OpenSSL.BigNumber) -> OpenSSL.BigNumber?
+}
+public enum Hash {
+}
+extension OpenSSL.Hash {
+  public enum SHA256 {
+    public static func hash(data: Foundation.Data) -> Foundation.Data
+    public static func hash(string: Swift.String) -> Foundation.Data
+  }
+}
+public class OCSPResponse {
+  public init(der: Foundation.Data) throws
+  @objc deinit
+  public enum Status : Swift.Int {
+    case successful
+    case malformedRequest
+    case internalError
+    case tryLater
+    case sigRequired
+    case unauthorized
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func status() -> OpenSSL.OCSPResponse.Status
+  public func producedAt() throws -> Foundation.Date
+  public enum CertStatus : Swift.Int {
+    case good
+    case revoked
+    case unknown
+    case requestedCertificateNotInResponse
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func certificateStatus(for: OpenSSL.X509, issuer: OpenSSL.X509) throws -> OpenSSL.OCSPResponse.CertStatus
+  public func getSigner() throws -> OpenSSL.X509?
+  public func basicVerifyWith<C>(trustedStore: C, options: OpenSSL.OCSPResponse.BasicVerifyOptions = []) throws -> Swift.Bool where C : Swift.Collection, C.Element == OpenSSL.X509
+  public struct BasicVerifyOptions : Swift.OptionSet {
+    public let rawValue: Swift.UInt
+    public init(rawValue: Swift.UInt)
+    public static let noIntern: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let noSigs: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let noVerify: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let trustOther: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let noChain: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let noChecks: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public static let noExplicit: OpenSSL.OCSPResponse.BasicVerifyOptions
+    public typealias ArrayLiteralElement = OpenSSL.OCSPResponse.BasicVerifyOptions
+    public typealias Element = OpenSSL.OCSPResponse.BasicVerifyOptions
+    public typealias RawValue = Swift.UInt
+  }
+}
+public protocol ECCurve {
+  static var name: Swift.String { get }
+  static var group: OpenSSL.OpenSSLECGroup { get }
+}
+public class OpenSSLECGroup {
+  @usableFromInline
+  final internal let curve: Swift.OpaquePointer
+  public init(curve: OpenSSL.OpenSSLECGroup.Name) throws
+  @objc deinit
+  @inlinable internal func withUnsafeGroupPointer<T>(_ body: (Swift.OpaquePointer) throws -> T) rethrows -> T {
+        try body(curve)
+    }
+}
+extension OpenSSL.OpenSSLECGroup {
+  public enum Name : Swift.String {
+    case brainpoolP256r1
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+extension OpenSSL.OpenSSLECGroup {
+  @usableFromInline
+  internal var coordinateByteCount: Swift.Int {
+    get
+  }
+}
+public struct OpenSSLError : Swift.Error {
+  public let name: Swift.String
+  public let info: [Swift.String : Swift.String]
+  public init(name: Swift.String)
+}
+public protocol PACE : OpenSSL.DiffieHellman {
+  associatedtype PrivateKey
+  func paceMapNonce(nonce: Foundation.Data, peerKey1: Self.PublicKey) throws -> (Self.PublicKey, Self.PrivateKey)
+}
+public typealias Digest = Foundation.Data
+public protocol Signer {
+  associatedtype Signature
+  func sign(message: Foundation.Data) throws -> Self.Signature
+}
+public protocol DigestSigner {
+  associatedtype Signature
+  func sign(digest: OpenSSL.Digest) throws -> Self.Signature
+}
+public protocol SignatureVerifier {
+  associatedtype Signature
+  func verify(signature: Self.Signature, message: Foundation.Data) throws -> Swift.Bool
+}
+public protocol ECSignature {
+  init(rawRepresentation: Foundation.Data) throws
+  init(derRepresentation: Foundation.Data) throws
+  var derRepresentation: Foundation.Data { get }
+  var rawRepresentation: Foundation.Data { get }
+}
+@_hasMissingDesignatedInitializers public class X509 {
+  public enum SignatureAlgorithm {
+    case ecdsaWithSHA256
+    case sha256WithRsaEncryption
+    case unsupported
+    public static func == (a: OpenSSL.X509.SignatureAlgorithm, b: OpenSSL.X509.SignatureAlgorithm) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public init(der: Foundation.Data) throws
+  public init(pem: Foundation.Data) throws
+  @objc deinit
+  public var derBytes: Foundation.Data? {
+    get
+  }
+  public func serialNumber() throws -> Swift.String
+  public func issuerX500PrincipalDEREncoded() -> Foundation.Data?
+  public func subjectX500PrincipalDEREncoded() -> Foundation.Data?
+  public func issuerOneLine() throws -> Swift.String
+  public func subjectOneLine() throws -> Swift.String
+  public func notBefore() throws -> Foundation.Date
+  public func notAfter() throws -> Foundation.Date
+  public var isValidCaCertificate: Swift.Bool {
+    get
+  }
+  public func issued(_ other: OpenSSL.X509) -> Swift.Bool
+  public func sha256Fingerprint() throws -> Foundation.Data
+  public func signatureAlgorithm() -> OpenSSL.X509.SignatureAlgorithm
+  public func validateWith<C>(trustStore: C) throws -> Swift.Bool where C : Swift.Collection, C.Element == OpenSSL.X509
+}
+extension OpenSSL.X509 : Swift.Equatable {
+  public static func == (lhs: OpenSSL.X509, rhs: OpenSSL.X509) -> Swift.Bool
+}
+extension OpenSSL.X509 {
+  public enum PublicKeyAlgorithm {
+    case rsaEncryption
+    case dhKeyExchange
+    case ellipticCurve
+    case notSupported
+    public static func == (a: OpenSSL.X509.PublicKeyAlgorithm, b: OpenSSL.X509.PublicKeyAlgorithm) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public func publicKeyAlgorithm() -> OpenSSL.X509.PublicKeyAlgorithm
+  public func brainpoolP256r1VerifyPublicKey() -> OpenSSL.BrainpoolP256r1.Verify.PublicKey?
+  public func brainpoolP256r1KeyExchangePublicKey() -> OpenSSL.BrainpoolP256r1.KeyExchange.PublicKey?
+}
+extension OpenSSL.OCSPResponse.Status : Swift.Equatable {}
+extension OpenSSL.OCSPResponse.Status : Swift.Hashable {}
+extension OpenSSL.OCSPResponse.Status : Swift.RawRepresentable {}
+extension OpenSSL.OCSPResponse.CertStatus : Swift.Equatable {}
+extension OpenSSL.OCSPResponse.CertStatus : Swift.Hashable {}
+extension OpenSSL.OCSPResponse.CertStatus : Swift.RawRepresentable {}
+extension OpenSSL.OpenSSLECGroup.Name : Swift.Equatable {}
+extension OpenSSL.OpenSSLECGroup.Name : Swift.Hashable {}
+extension OpenSSL.OpenSSLECGroup.Name : Swift.RawRepresentable {}
+extension OpenSSL.X509.SignatureAlgorithm : Swift.Equatable {}
+extension OpenSSL.X509.SignatureAlgorithm : Swift.Hashable {}
+extension OpenSSL.X509.PublicKeyAlgorithm : Swift.Equatable {}
+extension OpenSSL.X509.PublicKeyAlgorithm : Swift.Hashable {}

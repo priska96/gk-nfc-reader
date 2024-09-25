@@ -1,0 +1,4 @@
+framework module OpenSSL {
+  header "OpenSSL-Swift.h"
+  requires objc
+}

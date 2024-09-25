@@ -1,0 +1,91 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CardReaderProviderApi",
+        "printedName": "CardReaderProviderApi",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HealthCardAccess",
+        "printedName": "HealthCardAccess",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "HealthCardControl",
+        "printedName": "HealthCardControl",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "NFCCardReaderProvider",
+        "printedName": "NFCCardReaderProvider",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CoreNFC",
+        "printedName": "CoreNFC",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Helper",
+        "printedName": "Helper",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Combine",
+        "printedName": "Combine",
+        "declKind": "Import",
+        "moduleName": "OpenHealthCardKit",
+        "declAttributes": [
+          "Exported"
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": []
+}

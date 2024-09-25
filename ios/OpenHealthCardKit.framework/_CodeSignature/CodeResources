@@ -4,13 +4,73 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>.DS_Store</key>
+		<data>
+		4BJgblSnUWEYQwnHewyetYqsHZM=
+		</data>
 		<key>Headers/OpenHealthCardKit.h</key>
 		<data>
-		JHMcaJcn9cSForCKkP2zgUHE7PI=
+		DdHf6oHrYnyRCNnb2ucBCVXLn7Y=
 		</data>
 		<key>Info.plist</key>
 		<data>
 		oXv9UBMxNl+i7+JaTy71ljSP0RY=
+		</data>
+		<key>Modules/.DS_Store</key>
+		<data>
+		MEmWM3wBn1sLGg/ecRd//R8gB8w=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/.DS_Store</key>
+		<data>
+		McZC70+v/S51Dcqz9AWAaglEYCY=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<data>
+		2W2sNHoz+ie678oDf41rGu7505g=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<data>
+		fMTqEGAVNfY+DuI+UM58annU60A=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		mFaMx/Hc8sO0yuTFUnsOoly4tt4=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		7X8XTC+Kb25No4paBHqglxyX8yc=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		Kv2F8M9eE/iin5gBpK2/pMDIy/o=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		7X8XTC+Kb25No4paBHqglxyX8yc=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		cOo6cP70AqRYf72NhNfM1N+TcY8=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<data>
+		mFaMx/Hc8sO0yuTFUnsOoly4tt4=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		d58ZnnVVSGhuAWXBzCrEvQbsW3E=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		KQteiCX+H8TqN3lcCM1egyZJ86Q=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		d58ZnnVVSGhuAWXBzCrEvQbsW3E=
+		</data>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		qh/bL0sj/bbXL3ol5qDEUb6W5DA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -23,7 +83,91 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZPXq0EL6rEjhTm+Ph2XK2g3Q2fYtD5e1ZT/s2LkGSIo=
+			MNI5BPUJS+tpphCbegeLWkYO9H/aUqu1zNX9msN1U6Q=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Sqdu81b1kvvfoy6BqVOxAcjjyk/M9ZmttPo8fuNNTLU=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gx2GnxdObtQhGIdNDBiDGOmjZRwVJZEF68bkdD93MV8=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+DH5Cv2EzKhsNemz36Sbyde/Z09VzsdxZqO6V0jES5s=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YM6fQoCDTyrHFh4jx4Wuj77sz7M6uJw92Nc90PiuAzM=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fG4zsMmKwr3S253r59txKRKAw/nJsI+WKk/X1ispeFM=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YM6fQoCDTyrHFh4jx4Wuj77sz7M6uJw92Nc90PiuAzM=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qvbtPLHfkaDi21JTYYvl8ATTCuGGJUzDyYSNsW0Av8s=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			+DH5Cv2EzKhsNemz36Sbyde/Z09VzsdxZqO6V0jES5s=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xolywXgDzJYdhYO1T954AXAv29ovESCrGvPFxP85Cxk=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			i1Ab0IisWyN0prHbSN+3V3zam/BWs2ka2nY+O1bq7TE=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xolywXgDzJYdhYO1T954AXAv29ovESCrGvPFxP85Cxk=
+			</data>
+		</dict>
+		<key>Modules/OpenHealthCardKit.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			w/XYce3W5/l7T0Wt2xMupYEuAkrRFe8MZhJEKygszbA=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

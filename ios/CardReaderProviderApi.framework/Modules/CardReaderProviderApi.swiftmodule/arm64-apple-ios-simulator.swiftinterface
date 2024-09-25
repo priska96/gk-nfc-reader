@@ -1,0 +1,197 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name CardReaderProviderApi
+import Foundation
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@_hasMissingDesignatedInitializers public class APDU {
+  public enum Error : Swift.Error {
+    case commandBodyDataTooLarge
+    case expectedResponseLengthOutOfBounds
+    case insufficientResponseData(data: Foundation.Data)
+  }
+  public static let expectedLengthWildcardShort: Swift.Int
+  public static let expectedLengthWildcardExtended: Swift.Int
+  public struct Response {
+    public init(apdu data: Foundation.Data) throws
+    public static let OK: CardReaderProviderApi.APDU.Response
+  }
+  public struct Command {
+  }
+  @objc deinit
+}
+extension CardReaderProviderApi.APDU.Command {
+  public init(cla: Swift.UInt8, ins: Swift.UInt8, p1: Swift.UInt8, p2: Swift.UInt8, ne: Swift.Int? = nil) throws
+  public init(cla: Swift.UInt8, ins: Swift.UInt8, p1: Swift.UInt8, p2: Swift.UInt8, data: Foundation.Data?, ne: Swift.Int? = nil) throws
+}
+extension CardReaderProviderApi.APDU.Response {
+  public init(body: Foundation.Data, sw1: Swift.UInt8, sw2: Swift.UInt8) throws
+}
+public protocol CardChannelType {
+  var card: any CardReaderProviderApi.CardType { get }
+  var channelNumber: Swift.Int { get }
+  var extendedLengthSupported: Swift.Bool { get }
+  var maxMessageLength: Swift.Int { get }
+  var maxResponseLength: Swift.Int { get }
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  @_disfavoredOverload func transmit(command: any CardReaderProviderApi.CommandType, writeTimeout: Foundation.TimeInterval, readTimeout: Foundation.TimeInterval) throws -> any CardReaderProviderApi.ResponseType
+  #if compiler(>=5.3) && $AsyncAwait
+  func transmitAsync(command: any CardReaderProviderApi.CommandType, writeTimeout: Foundation.TimeInterval, readTimeout: Foundation.TimeInterval) async throws -> any CardReaderProviderApi.ResponseType
+  #endif
+  @_disfavoredOverload func close() throws
+  #if compiler(>=5.3) && $AsyncAwait
+  func closeAsync() async throws
+  #endif
+}
+public enum CardError : Swift.Error {
+  case securityError((any Swift.Error)?)
+  case connectionError((any Swift.Error)?)
+  case illegalState((any Swift.Error)?)
+  case objcError(Foundation.NSException?)
+}
+public struct CardProtocol : Swift.OptionSet {
+  public let rawValue: Swift.UInt
+  public init(rawValue: Swift.UInt)
+  public static let t0: CardReaderProviderApi.CardProtocol
+  public static let t1: CardReaderProviderApi.CardProtocol
+  public static let t15: CardReaderProviderApi.CardProtocol
+  public static let any: CardReaderProviderApi.CardProtocol
+  public typealias ArrayLiteralElement = CardReaderProviderApi.CardProtocol
+  public typealias Element = CardReaderProviderApi.CardProtocol
+  public typealias RawValue = Swift.UInt
+}
+public protocol CardReaderControllerDelegate : AnyObject {
+  func cardReader(controller: any CardReaderProviderApi.CardReaderControllerType, didConnect cardReader: any CardReaderProviderApi.CardReaderType)
+  func cardReader(controller: any CardReaderProviderApi.CardReaderControllerType, didDisconnect cardReader: any CardReaderProviderApi.CardReaderType)
+}
+public protocol CardReaderControllerType : AnyObject {
+  var name: Swift.String { get }
+  var cardReaders: [any CardReaderProviderApi.CardReaderType] { get }
+  func add(delegate: any CardReaderProviderApi.CardReaderControllerDelegate)
+  func remove(delegate: any CardReaderProviderApi.CardReaderControllerDelegate)
+}
+@objc public protocol CardReaderProviderType {
+  @objc static func provideCardReaderController() -> CardReaderProviderApi.CardReaderControllerObjcWrapper
+  @objc static var descriptor: any CardReaderProviderApi.ProviderDescriptorType { get }
+}
+@objc public class CardReaderControllerObjcWrapper : ObjectiveC.NSObject {
+  final public let value: any CardReaderProviderApi.CardReaderControllerType
+  required public init(_ value: any CardReaderProviderApi.CardReaderControllerType)
+  @objc deinit
+}
+public protocol CardReaderType : AnyObject, Swift.CustomStringConvertible {
+  var name: Swift.String { get }
+  var displayName: Swift.String { get }
+  var cardPresent: Swift.Bool { get }
+  func onCardPresenceChanged(_ block: @escaping (any CardReaderProviderApi.CardReaderType) -> Swift.Void)
+  func connect(_ params: [Swift.String : Any]) throws -> (any CardReaderProviderApi.CardType)?
+}
+extension CardReaderProviderApi.CardReaderType {
+  public var displayName: Swift.String {
+    get
+  }
+}
+public typealias ATR = Foundation.Data
+public protocol CardType : Swift.CustomStringConvertible {
+  var atr: CardReaderProviderApi.ATR { get }
+  var `protocol`: CardReaderProviderApi.CardProtocol { get }
+  func openBasicChannel() throws -> any CardReaderProviderApi.CardChannelType
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  @_disfavoredOverload func openLogicChannel() throws -> any CardReaderProviderApi.CardChannelType
+  #if compiler(>=5.3) && $AsyncAwait
+  func openLogicChannelAsync() async throws -> any CardReaderProviderApi.CardChannelType
+  #endif
+  func transmitControl(command: Swift.Int, data: Foundation.Data) throws -> Foundation.Data
+  func initialApplicationIdentifier() throws -> Foundation.Data?
+  func disconnect(reset: Swift.Bool) throws
+}
+extension CardReaderProviderApi.CardType {
+  public func transmitControl(command _: Swift.Int, data _: Foundation.Data) throws -> Foundation.Data
+  public func initialApplicationIdentifier() throws -> Foundation.Data?
+}
+extension CardReaderProviderApi.APDU.Command : CardReaderProviderApi.CommandType {
+  public var data: Foundation.Data? {
+    get
+  }
+  public var cla: Swift.UInt8 {
+    get
+  }
+  public var ins: Swift.UInt8 {
+    get
+  }
+  public var p1: Swift.UInt8 {
+    get
+  }
+  public var p2: Swift.UInt8 {
+    get
+  }
+  public var ne: Swift.Int? {
+    get
+  }
+  public var nc: Swift.Int {
+    get
+  }
+  public var bytes: Foundation.Data {
+    get
+  }
+}
+public struct InvalidCommandChannel : Swift.Error {
+  public let channelNo: Swift.UInt8
+}
+extension CardReaderProviderApi.CommandType {
+  public func toLogicalChannel(channelNo: Swift.UInt8) throws -> any CardReaderProviderApi.CommandType
+}
+public protocol CommandType {
+  var data: Foundation.Data? { get }
+  var ne: Swift.Int? { get }
+  var nc: Swift.Int { get }
+  var cla: Swift.UInt8 { get }
+  var ins: Swift.UInt8 { get }
+  var p1: Swift.UInt8 { get }
+  var p2: Swift.UInt8 { get }
+  var bytes: Foundation.Data { get }
+}
+public func == (lhs: any CardReaderProviderApi.CommandType, rhs: any CardReaderProviderApi.CommandType) -> Swift.Bool
+public class ProviderDescriptor : CardReaderProviderApi.ProviderDescriptorType {
+  @objc final public let name: Swift.String
+  @objc final public let license: Swift.String
+  @objc final public let providerDescription: Swift.String
+  @objc final public let shortDescription: Swift.String
+  @objc final public let providerClassName: Swift.String
+  public init(_ name: Swift.String, _ license: Swift.String, _ description: Swift.String, _ shortDesc: Swift.String, _ className: Swift.String)
+  @objc deinit
+}
+@objc public protocol ProviderDescriptorType {
+  @objc var name: Swift.String { get }
+  @objc var license: Swift.String { get }
+  @objc var providerDescription: Swift.String { get }
+  @objc var shortDescription: Swift.String { get }
+  @objc var providerClassName: Swift.String { get }
+}
+extension CardReaderProviderApi.APDU.Response : CardReaderProviderApi.ResponseType {
+  public var data: Foundation.Data? {
+    get
+  }
+  public var nr: Swift.Int {
+    get
+  }
+  public var sw1: Swift.UInt8 {
+    get
+  }
+  public var sw2: Swift.UInt8 {
+    get
+  }
+  public var sw: Swift.UInt16 {
+    get
+  }
+}
+public protocol ResponseType {
+  var data: Foundation.Data? { get }
+  var nr: Swift.Int { get }
+  var sw1: Swift.UInt8 { get }
+  var sw2: Swift.UInt8 { get }
+  var sw: Swift.UInt16 { get }
+}
+public func == (lhs: any CardReaderProviderApi.ResponseType, rhs: any CardReaderProviderApi.ResponseType) -> Swift.Bool

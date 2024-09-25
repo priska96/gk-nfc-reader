@@ -1,0 +1,4 @@
+framework module Helper {
+  header "Helper-Swift.h"
+  requires objc
+}

@@ -1,6 +1,0 @@
-framework module OpenHealthCardKit {
-  umbrella header "OpenHealthCardKit.h"
-  export *
-
-  module * { export * }
-}

@@ -1,0 +1,798 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "Helper",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "CommandLogger",
+        "printedName": "CommandLogger",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "commands",
+            "printedName": "commands",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Helper.Command]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Command",
+                    "printedName": "Helper.Command",
+                    "usr": "s:6Helper7CommandV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6Helper13CommandLoggerO8commandsSayAA0B0VGvpZ",
+            "mangledName": "$s6Helper13CommandLoggerO8commandsSayAA0B0VGvpZ",
+            "moduleName": "Helper",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Helper.Command]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Command",
+                        "printedName": "Helper.Command",
+                        "usr": "s:6Helper7CommandV"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper13CommandLoggerO8commandsSayAA0B0VGvgZ",
+                "mangledName": "$s6Helper13CommandLoggerO8commandsSayAA0B0VGvgZ",
+                "moduleName": "Helper",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[Helper.Command]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Command",
+                        "printedName": "Helper.Command",
+                        "usr": "s:6Helper7CommandV"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper13CommandLoggerO8commandsSayAA0B0VGvsZ",
+                "mangledName": "$s6Helper13CommandLoggerO8commandsSayAA0B0VGvsZ",
+                "moduleName": "Helper",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper13CommandLoggerO8commandsSayAA0B0VGvMZ",
+                "mangledName": "$s6Helper13CommandLoggerO8commandsSayAA0B0VGvMZ",
+                "moduleName": "Helper",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:6Helper13CommandLoggerO",
+        "mangledName": "$s6Helper13CommandLoggerO",
+        "moduleName": "Helper",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "Command",
+        "printedName": "Command",
+        "children": [
+          {
+            "kind": "TypeDecl",
+            "name": "CommunicationType",
+            "printedName": "CommunicationType",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "send",
+                "printedName": "send",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Helper.Command.CommunicationType.Type) -> Helper.Command.CommunicationType",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CommunicationType",
+                        "printedName": "Helper.Command.CommunicationType",
+                        "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Helper.Command.CommunicationType.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationType",
+                            "printedName": "Helper.Command.CommunicationType",
+                            "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO4sendyA2EmF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO4sendyA2EmF",
+                "moduleName": "Helper"
+              },
+              {
+                "kind": "Var",
+                "name": "sendSecureChannel",
+                "printedName": "sendSecureChannel",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Helper.Command.CommunicationType.Type) -> Helper.Command.CommunicationType",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CommunicationType",
+                        "printedName": "Helper.Command.CommunicationType",
+                        "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Helper.Command.CommunicationType.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationType",
+                            "printedName": "Helper.Command.CommunicationType",
+                            "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO17sendSecureChannelyA2EmF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO17sendSecureChannelyA2EmF",
+                "moduleName": "Helper"
+              },
+              {
+                "kind": "Var",
+                "name": "response",
+                "printedName": "response",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Helper.Command.CommunicationType.Type) -> Helper.Command.CommunicationType",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CommunicationType",
+                        "printedName": "Helper.Command.CommunicationType",
+                        "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Helper.Command.CommunicationType.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationType",
+                            "printedName": "Helper.Command.CommunicationType",
+                            "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO8responseyA2EmF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO8responseyA2EmF",
+                "moduleName": "Helper"
+              },
+              {
+                "kind": "Var",
+                "name": "responseSecureChannel",
+                "printedName": "responseSecureChannel",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Helper.Command.CommunicationType.Type) -> Helper.Command.CommunicationType",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CommunicationType",
+                        "printedName": "Helper.Command.CommunicationType",
+                        "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Helper.Command.CommunicationType.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationType",
+                            "printedName": "Helper.Command.CommunicationType",
+                            "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO21responseSecureChannelyA2EmF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO21responseSecureChannelyA2EmF",
+                "moduleName": "Helper"
+              },
+              {
+                "kind": "Var",
+                "name": "description",
+                "printedName": "description",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Helper.Command.CommunicationType.Type) -> Helper.Command.CommunicationType",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CommunicationType",
+                        "printedName": "Helper.Command.CommunicationType",
+                        "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "Helper.Command.CommunicationType.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "CommunicationType",
+                            "printedName": "Helper.Command.CommunicationType",
+                            "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO11descriptionyA2EmF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO11descriptionyA2EmF",
+                "moduleName": "Helper"
+              },
+              {
+                "kind": "Function",
+                "name": "==",
+                "printedName": "==(_:_:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationType",
+                    "printedName": "Helper.Command.CommunicationType",
+                    "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationType",
+                    "printedName": "Helper.Command.CommunicationType",
+                    "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO2eeoiySbAE_AEtFZ",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO2eeoiySbAE_AEtFZ",
+                "moduleName": "Helper",
+                "static": true,
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Var",
+                "name": "hashValue",
+                "printedName": "hashValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO9hashValueSivp",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO9hashValueSivp",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:6Helper7CommandV17CommunicationTypeO9hashValueSivg",
+                    "mangledName": "$s6Helper7CommandV17CommunicationTypeO9hashValueSivg",
+                    "moduleName": "Helper",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              },
+              {
+                "kind": "Function",
+                "name": "hash",
+                "printedName": "hash(into:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Hasher",
+                    "printedName": "Swift.Hasher",
+                    "paramValueOwnership": "InOut",
+                    "usr": "s:s6HasherV"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO4hash4intoys6HasherVz_tF",
+                "mangledName": "$s6Helper7CommandV17CommunicationTypeO4hash4intoys6HasherVz_tF",
+                "moduleName": "Helper",
+                "implicit": true,
+                "funcSelfKind": "NonMutating"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:6Helper7CommandV17CommunicationTypeO",
+            "mangledName": "$s6Helper7CommandV17CommunicationTypeO",
+            "moduleName": "Helper",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UUID",
+                "printedName": "Foundation.UUID",
+                "usr": "s:10Foundation4UUIDV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6Helper7CommandV2id10Foundation4UUIDVvp",
+            "mangledName": "$s6Helper7CommandV2id10Foundation4UUIDVvp",
+            "moduleName": "Helper",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV2id10Foundation4UUIDVvg",
+                "mangledName": "$s6Helper7CommandV2id10Foundation4UUIDVvg",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV2id10Foundation4UUIDVvs",
+                "mangledName": "$s6Helper7CommandV2id10Foundation4UUIDVvs",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV2id10Foundation4UUIDVvM",
+                "mangledName": "$s6Helper7CommandV2id10Foundation4UUIDVvM",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationType",
+                "printedName": "Helper.Command.CommunicationType",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6Helper7CommandV4typeAC17CommunicationTypeOvp",
+            "mangledName": "$s6Helper7CommandV4typeAC17CommunicationTypeOvp",
+            "moduleName": "Helper",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationType",
+                    "printedName": "Helper.Command.CommunicationType",
+                    "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV4typeAC17CommunicationTypeOvg",
+                "mangledName": "$s6Helper7CommandV4typeAC17CommunicationTypeOvg",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CommunicationType",
+                    "printedName": "Helper.Command.CommunicationType",
+                    "usr": "s:6Helper7CommandV17CommunicationTypeO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV4typeAC17CommunicationTypeOvs",
+                "mangledName": "$s6Helper7CommandV4typeAC17CommunicationTypeOvs",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV4typeAC17CommunicationTypeOvM",
+                "mangledName": "$s6Helper7CommandV4typeAC17CommunicationTypeOvM",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "message",
+            "printedName": "message",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:6Helper7CommandV7messageSSvp",
+            "mangledName": "$s6Helper7CommandV7messageSSvp",
+            "moduleName": "Helper",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV7messageSSvg",
+                "mangledName": "$s6Helper7CommandV7messageSSvg",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV7messageSSvs",
+                "mangledName": "$s6Helper7CommandV7messageSSvs",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:6Helper7CommandV7messageSSvM",
+                "mangledName": "$s6Helper7CommandV7messageSSvM",
+                "moduleName": "Helper",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(message:type:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Command",
+                "printedName": "Helper.Command",
+                "usr": "s:6Helper7CommandV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CommunicationType",
+                "printedName": "Helper.Command.CommunicationType",
+                "usr": "s:6Helper7CommandV17CommunicationTypeO"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:6Helper7CommandV7message4typeACSS_AC17CommunicationTypeOtcfc",
+            "mangledName": "$s6Helper7CommandV7message4typeACSS_AC17CommunicationTypeOtcfc",
+            "moduleName": "Helper",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:6Helper7CommandV",
+        "mangledName": "$s6Helper7CommandV",
+        "moduleName": "Helper",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Identifiable",
+            "printedName": "Identifiable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ID",
+                "printedName": "ID",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12IdentifiableP",
+            "mangledName": "$ss12IdentifiableP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/priskakohnen\/Downloads\/ref-OpenHealthCardKit-main\/Sources\/Helper\/CommandLogger.swift",
+      "kind": "Array",
+      "offset": 818,
+      "length": 2,
+      "value": "[]"
+    }
+  ]
+}

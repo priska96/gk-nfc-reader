@@ -1,0 +1,317 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name HealthCardControl
+import ASN1Kit
+import CardReaderProviderApi
+import Combine
+import CommonCrypto
+import Foundation
+import HealthCardAccess
+import Helper
+import OSLog
+import OpenSSL
+import Security
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum CardAid : HealthCardAccess.ApplicationIdentifier {
+  case egk
+  case hba
+  case smcb
+  public func hash(into hasher: inout Swift.Hasher)
+  public init?(rawValue: HealthCardAccess.ApplicationIdentifier)
+  public typealias RawValue = HealthCardAccess.ApplicationIdentifier
+  public var hashValue: Swift.Int {
+    get
+  }
+  public var rawValue: HealthCardAccess.ApplicationIdentifier {
+    get
+  }
+}
+extension CardReaderProviderApi.CardChannelType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func readCardType(cardAid: HealthCardControl.CardAid? = nil, writeTimeout: Foundation.TimeInterval = 30.0, readTimeout: Foundation.TimeInterval = 30.0) -> Combine.AnyPublisher<HealthCardAccess.HealthCardPropertyType, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func readCardTypeAsync(cardAid: HealthCardControl.CardAid? = nil, writeTimeout: Foundation.TimeInterval = 30.0, readTimeout: Foundation.TimeInterval = 30.0) async throws -> HealthCardAccess.HealthCardPropertyType
+  #endif
+}
+extension CardReaderProviderApi.CardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func openSecureSession(can: HealthCardAccess.CAN, writeTimeout: Foundation.TimeInterval = 30, readTimeout: Foundation.TimeInterval = 30) -> Combine.AnyPublisher<any HealthCardAccess.HealthCardType, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func openSecureSessionAsync(can: HealthCardAccess.CAN, writeTimeout: Foundation.TimeInterval = 30, readTimeout: Foundation.TimeInterval = 30) async throws -> any HealthCardControl.SecureHealthCardType
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func openSecureSession(can: Swift.String, writeTimeout: Foundation.TimeInterval = 30, readTimeout: Foundation.TimeInterval = 30) -> Combine.AnyPublisher<any HealthCardAccess.HealthCardType, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func openSecureSessionAsync(can: Swift.String, writeTimeout: Foundation.TimeInterval = 30, readTimeout: Foundation.TimeInterval = 30) async throws -> any HealthCardControl.SecureHealthCardType
+  #endif
+}
+extension HealthCardAccess.HealthCard {
+  public enum Error : Swift.Error {
+    case operational
+    case unexpectedResponse(actual: HealthCardAccess.ResponseStatus, expected: HealthCardAccess.ResponseStatus)
+    case unknownCardType(aid: HealthCardAccess.ApplicationIdentifier?)
+    case illegalGeneration(version: HealthCardAccess.CardVersion2)
+    case unsupportedCardType
+  }
+}
+public typealias AuthenticationResult = (certificate: HealthCardAccess.CertificateInfo, signature: HealthCardAccess.Signature)
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func authenticate(challenge: Foundation.Data) -> Combine.AnyPublisher<HealthCardControl.AuthenticationResult, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func authenticateAsync(challenge: Foundation.Data) async throws -> HealthCardControl.AuthenticationResult
+  #endif
+}
+@frozen public enum ChangeReferenceDataResponse : Swift.Equatable {
+  case success
+  case wrongSecretWarning(retryCount: Swift.Int)
+  case securityStatusNotSatisfied
+  case memoryFailure
+  case commandBlocked
+  case wrongPasswordLength
+  case passwordNotFound
+  case unknownFailure
+  public static func == (a: HealthCardControl.ChangeReferenceDataResponse, b: HealthCardControl.ChangeReferenceDataResponse) -> Swift.Bool
+}
+public enum ChangeReferenceDataAffectedPassword {
+  case mrPinHomeNoDfSpecific
+  public static func == (a: HealthCardControl.ChangeReferenceDataAffectedPassword, b: HealthCardControl.ChangeReferenceDataAffectedPassword) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func changeReferenceDataSetNewPin(old: HealthCardAccess.Format2Pin, new: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false) -> Combine.AnyPublisher<HealthCardControl.ChangeReferenceDataResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func changeReferenceDataSetNewPin(old: HealthCardAccess.Format2Pin, new: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false) async throws -> HealthCardControl.ChangeReferenceDataResponse
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func changeReferenceDataSetNewPin(old: Swift.String, new: Swift.String, affectedPassword: HealthCardControl.ChangeReferenceDataAffectedPassword) -> Combine.AnyPublisher<HealthCardControl.ChangeReferenceDataResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func changeReferenceDataSetNewPin(old: Swift.String, new: Swift.String, affectedPassword: HealthCardControl.ChangeReferenceDataAffectedPassword) async throws -> HealthCardControl.ChangeReferenceDataResponse
+  #endif
+}
+public enum AutCertInfo {
+  case efAutR2048
+  case efAutE256
+  public var eSign: HealthCardAccess.ApplicationIdentifier {
+    get
+  }
+  public var certificate: HealthCardAccess.DedicatedFile {
+    get
+  }
+  public var algorithm: HealthCardAccess.PSOAlgorithm {
+    get
+  }
+  public var key: HealthCardAccess.Key {
+    get
+  }
+  public static func == (a: HealthCardControl.AutCertInfo, b: HealthCardControl.AutCertInfo) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct AutCertificateResponse {
+  public init(info: HealthCardControl.AutCertInfo, certificate: Foundation.Data)
+  public let info: HealthCardControl.AutCertInfo
+  public let certificate: Foundation.Data
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func readAutCertificate() -> Combine.AnyPublisher<HealthCardControl.AutCertificateResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func readAutCertificateAsync() async throws -> HealthCardControl.AutCertificateResponse
+  #endif
+}
+extension HealthCardAccess.HealthCardPropertyType {
+  public var autCertInfo: HealthCardControl.AutCertInfo? {
+    get
+  }
+}
+extension HealthCardControl.AutCertInfo {
+  public var signatureHashMethod: (Foundation.Data) -> Foundation.Data {
+    get
+  }
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func sign(data: Foundation.Data, hasher: @escaping (Foundation.Data, HealthCardControl.AutCertInfo) -> Foundation.Data = { data, cert in cert.signatureHashMethod(data) }) -> Combine.AnyPublisher<any HealthCardAccess.HealthCardResponseType, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func signAsync(data: Foundation.Data, hasher: @escaping (Foundation.Data, HealthCardControl.AutCertInfo) -> Foundation.Data = { data, cert in cert.signatureHashMethod(data) }) async throws -> any HealthCardAccess.HealthCardResponseType
+  #endif
+}
+public enum ReadError : Swift.Error, Swift.Equatable {
+  case unexpectedResponse(state: HealthCardAccess.ResponseStatus)
+  case noData(state: HealthCardAccess.ResponseStatus)
+  case fcpMissingReadSize(state: HealthCardAccess.ResponseStatus)
+  public static func == (a: HealthCardControl.ReadError, b: HealthCardControl.ReadError) -> Swift.Bool
+}
+public enum SelectError : Swift.Error, Swift.Equatable {
+  case failedToSelectAid(HealthCardAccess.ApplicationIdentifier, status: HealthCardAccess.ResponseStatus?)
+  case failedToSelectFid(HealthCardAccess.FileIdentifier, status: HealthCardAccess.ResponseStatus?)
+  public static func == (a: HealthCardControl.SelectError, b: HealthCardControl.SelectError) -> Swift.Bool
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func readSelectedFile(expected size: Swift.Int?, failOnEndOfFileWarning: Swift.Bool = true, offset: Swift.Int = 0) -> Combine.AnyPublisher<Foundation.Data, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func readSelectedFileAsync(expected size: Swift.Int?, failOnEndOfFileWarning: Swift.Bool = true, offset: Swift.Int = 0) async throws -> Foundation.Data
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func selectDedicated(file: HealthCardAccess.DedicatedFile, fcp: Swift.Bool = false, length: Swift.Int = 256) -> Combine.AnyPublisher<(HealthCardAccess.ResponseStatus, HealthCardAccess.FileControlParameter?), any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func selectDedicatedAsync(file: HealthCardAccess.DedicatedFile, fcp: Swift.Bool = false, length: Swift.Int = 256) async throws -> (HealthCardAccess.ResponseStatus, HealthCardAccess.FileControlParameter?)
+  #endif
+}
+@frozen public enum ResetRetryCounterResponse : Swift.Equatable {
+  case success
+  case wrongSecretWarning(retryCount: Swift.Int)
+  case securityStatusNotSatisfied
+  case memoryFailure
+  case commandBlocked
+  case wrongPasswordLength
+  case passwordNotFound
+  case unknownFailure
+  public static func == (a: HealthCardControl.ResetRetryCounterResponse, b: HealthCardControl.ResetRetryCounterResponse) -> Swift.Bool
+}
+public enum ResetRetryCounterAffectedPassword {
+  case mrPinHomeNoDfSpecific
+  public static func == (a: HealthCardControl.ResetRetryCounterAffectedPassword, b: HealthCardControl.ResetRetryCounterAffectedPassword) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func resetRetryCounter(puk: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false) -> Combine.AnyPublisher<HealthCardControl.ResetRetryCounterResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func resetRetryCounter(puk: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false, writeTimeout: Foundation.TimeInterval = 10, readTimeout: Foundation.TimeInterval = 10) async throws -> HealthCardControl.ResetRetryCounterResponse
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func resetRetryCounter(puk: Swift.String, affectedPassWord: HealthCardControl.ResetRetryCounterAffectedPassword) -> Combine.AnyPublisher<HealthCardControl.ResetRetryCounterResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func resetRetryCounter(puk: Swift.String, affectedPassWord: HealthCardControl.ResetRetryCounterAffectedPassword, writeTimeout: Foundation.TimeInterval = 10, readTimeout: Foundation.TimeInterval = 10) async throws -> HealthCardControl.ResetRetryCounterResponse
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func resetRetryCounterAndSetNewPin(puk: HealthCardAccess.Format2Pin, newPin: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false) -> Combine.AnyPublisher<HealthCardControl.ResetRetryCounterResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func resetRetryCounterAndSetNewPinAsync(puk: HealthCardAccess.Format2Pin, newPin: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin = EgkFileSystem.Pin.mrpinHome, dfSpecific: Swift.Bool = false) async throws -> HealthCardControl.ResetRetryCounterResponse
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func resetRetryCounterAndSetNewPin(puk: Swift.String, newPin: Swift.String, affectedPassWord: HealthCardControl.ResetRetryCounterAffectedPassword) -> Combine.AnyPublisher<HealthCardControl.ResetRetryCounterResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func resetRetryCounterAndSetNewPinAsync(puk: Swift.String, newPin: Swift.String, affectedPassWord: HealthCardControl.ResetRetryCounterAffectedPassword) async throws -> HealthCardControl.ResetRetryCounterResponse
+  #endif
+}
+@frozen public enum VerifyPinResponse : Swift.Equatable {
+  case success
+  case wrongSecretWarning(retryCount: Swift.Int)
+  case securityStatusNotSatisfied
+  case memoryFailure
+  case passwordBlocked
+  case passwordNotUsable
+  case passwordNotFound
+  case unknownFailure
+  public static func == (a: HealthCardControl.VerifyPinResponse, b: HealthCardControl.VerifyPinResponse) -> Swift.Bool
+}
+public enum VerifyPinAffectedPassword {
+  case mrPinHomeNoDfSpecific
+  public static func == (a: HealthCardControl.VerifyPinAffectedPassword, b: HealthCardControl.VerifyPinAffectedPassword) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension HealthCardAccess.HealthCardType {
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func verify(pin: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin, dfSpecific: Swift.Bool = false) -> Combine.AnyPublisher<HealthCardControl.VerifyPinResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func verifyAsync(pin: HealthCardAccess.Format2Pin, type: HealthCardAccess.EgkFileSystem.Pin, dfSpecific: Swift.Bool = false) async throws -> HealthCardControl.VerifyPinResponse
+  #endif
+  @available(*, deprecated, message: "Use structured concurrency version instead")
+  public func verify(pin: Swift.String, affectedPassword: HealthCardControl.VerifyPinAffectedPassword) -> Combine.AnyPublisher<HealthCardControl.VerifyPinResponse, any Swift.Error>
+  #if compiler(>=5.3) && $AsyncAwait
+  public func verifyAsync(pin: Swift.String, affectedPassword: HealthCardControl.VerifyPinAffectedPassword) async throws -> HealthCardControl.VerifyPinResponse
+  #endif
+}
+public enum KeyAgreement {
+  public enum Error : Swift.Error, Swift.Equatable {
+    case illegalArgument
+    case unexpectedFormedAnswerFromCard
+    case resultOfEcArithmeticWasInfinite
+    case macPcdVerificationFailedOnCard
+    case macPiccVerificationFailedLocally
+    case noValidHealthCardStatus
+    case efCardAccessNotAvailable
+    case unsupportedKeyAgreementAlgorithm(ASN1Kit.ObjectIdentifier)
+    public static func == (a: HealthCardControl.KeyAgreement.Error, b: HealthCardControl.KeyAgreement.Error) -> Swift.Bool
+  }
+  public enum Algorithm {
+    case idPaceEcdhGmAesCbcCmac128
+    @available(*, deprecated, message: "Use structured concurrency version instead")
+    public func negotiateSessionKey(card: any HealthCardAccess.HealthCardType, can: HealthCardAccess.CAN, writeTimeout: Foundation.TimeInterval = 10, readTimeout: Foundation.TimeInterval = 10) -> Combine.AnyPublisher<any HealthCardControl.SecureMessaging, any Swift.Error>
+    #if compiler(>=5.3) && $AsyncAwait
+    public func negotiateSessionKeyAsync(card: any HealthCardAccess.HealthCardType, can: HealthCardAccess.CAN, writeTimeout: Foundation.TimeInterval = 10, readTimeout: Foundation.TimeInterval = 10) async throws -> any HealthCardControl.SecureMessaging
+    #endif
+    public static func == (a: HealthCardControl.KeyAgreement.Algorithm, b: HealthCardControl.KeyAgreement.Algorithm) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+public enum KeyDerivationFunction {
+  public enum KeyFuncType {
+    case aes128
+    public static func == (a: HealthCardControl.KeyDerivationFunction.KeyFuncType, b: HealthCardControl.KeyDerivationFunction.KeyFuncType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum Mode {
+    case enc
+    case mac
+    case password
+    public static func == (a: HealthCardControl.KeyDerivationFunction.Mode, b: HealthCardControl.KeyDerivationFunction.Mode) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func deriveKey(from sharedSecret: Foundation.Data, funcType: HealthCardControl.KeyDerivationFunction.KeyFuncType = .aes128, mode: HealthCardControl.KeyDerivationFunction.Mode) -> Foundation.Data
+}
+public protocol SecureHealthCardType : HealthCardAccess.HealthCardType {
+}
+public protocol SecureMessaging {
+  func encrypt(command: any CardReaderProviderApi.CommandType) throws -> any CardReaderProviderApi.CommandType
+  func decrypt(response: any CardReaderProviderApi.ResponseType) throws -> any CardReaderProviderApi.ResponseType
+  func invalidate()
+}
+extension HealthCardControl.CardAid : Swift.Equatable {}
+extension HealthCardControl.CardAid : Swift.Hashable {}
+extension HealthCardControl.CardAid : Swift.RawRepresentable {}
+extension HealthCardControl.ChangeReferenceDataResponse : Swift.Sendable {}
+extension HealthCardControl.ChangeReferenceDataAffectedPassword : Swift.Equatable {}
+extension HealthCardControl.ChangeReferenceDataAffectedPassword : Swift.Hashable {}
+extension HealthCardControl.AutCertInfo : Swift.Equatable {}
+extension HealthCardControl.AutCertInfo : Swift.Hashable {}
+extension HealthCardControl.ResetRetryCounterResponse : Swift.Sendable {}
+extension HealthCardControl.ResetRetryCounterAffectedPassword : Swift.Equatable {}
+extension HealthCardControl.ResetRetryCounterAffectedPassword : Swift.Hashable {}
+extension HealthCardControl.VerifyPinResponse : Swift.Sendable {}
+extension HealthCardControl.VerifyPinAffectedPassword : Swift.Equatable {}
+extension HealthCardControl.VerifyPinAffectedPassword : Swift.Hashable {}
+extension HealthCardControl.KeyAgreement.Algorithm : Swift.Equatable {}
+extension HealthCardControl.KeyAgreement.Algorithm : Swift.Hashable {}
+extension HealthCardControl.KeyDerivationFunction.KeyFuncType : Swift.Equatable {}
+extension HealthCardControl.KeyDerivationFunction.KeyFuncType : Swift.Hashable {}
+extension HealthCardControl.KeyDerivationFunction.Mode : Swift.Equatable {}
+extension HealthCardControl.KeyDerivationFunction.Mode : Swift.Hashable {}

@@ -14,4 +14,6 @@ Pods/
 *.xcuserdata
 *.xcuserstate
 
-example
+example/*
+
+build

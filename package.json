@@ -1,6 +1,6 @@
 {
   "name": "gk-nfc-reader",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Reads the Personal Data of eGK viw NFC",
   "main": "build/index.js",
   "types": "build/index.d.ts",

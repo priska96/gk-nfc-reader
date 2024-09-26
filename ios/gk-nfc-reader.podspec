@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "gk-nfc-reader"
-    s.version      = "1.0.10"
+    s.version      = "1.0.11"
     s.summary      = "Reads the Personal Data of eGK viw NFC"
     s.homepage     = "https://github.com/priska96/gk-nfc-reader"
     s.license      = "ISC"

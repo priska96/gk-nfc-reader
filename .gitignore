@@ -5,15 +5,11 @@ node_modules/
 .DS_Store
 
 # Build output
-build/
 DerivedData/
 Pods/
 
 # Xcode specific
 *.xcworkspace
 *.xcuserdata
-*.xcuserstate
 
 example/*
-
-build

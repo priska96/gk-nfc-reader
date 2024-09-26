@@ -1,6 +1,7 @@
 const {
   withInfoPlist,
   withEntitlementsPlist,
+  withXcodeProject,
   createRunOncePlugin,
 } = require('@expo/config-plugins');
 
@@ -35,6 +36,25 @@ const withGKNFCReader = config => {
 
     return config;
   });
+
+  config = withXcodeProject(config, config => {
+    const deploymentTarget = '14.0';
+    const {project} = config.modResults;
+
+    // Update the iOS deployment target in the Xcode project
+    project.updateBuildProperty(
+      'IPHONEOS_DEPLOYMENT_TARGET',
+      deploymentTarget,
+      'Release',
+    );
+    project.updateBuildProperty(
+      'IPHONEOS_DEPLOYMENT_TARGET',
+      deploymentTarget,
+      'Debug',
+    );
+
+    return config;
+  });
   return config;
 };
 
@@ -42,5 +62,5 @@ const withGKNFCReader = config => {
 module.exports = createRunOncePlugin(
   withGKNFCReader,
   'with-gk-nfc-reader',
-  '1.0.8',
+  '1.0.9',
 );

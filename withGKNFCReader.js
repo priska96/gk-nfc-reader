@@ -1,13 +1,14 @@
 const {
-  withInfoPlist,
   withEntitlementsPlist,
+  withInfoPlist,
   withXcodeProject,
   createRunOncePlugin,
 } = require('@expo/config-plugins');
 
-const withGKNFCReader = config => {
-  // iOS Configuration
-  config = withInfoPlist(config, config => {
+// Function to modify Info.plist
+function withCustomInfoPlist(config, infoPlistChanges) {
+  return withInfoPlist(config, config => {
+    // Add your Info.plist modifications here
     config.modResults['NFCReaderUsageDescription'] = 'NFC Test';
     config.modResults[
       'com.apple.developer.nfc.readersession.iso7816.select-identifiers'
@@ -27,8 +28,10 @@ const withGKNFCReader = config => {
     ];
     return config;
   });
+}
 
-  config = withEntitlementsPlist(config, config => {
+function withCustomEntitlements(config, entitlements) {
+  return withEntitlementsPlist(config, config => {
     // Modify the entitlements plist here
     config.modResults['com.apple.developer.nfc.readersession.formats'] = [
       'TAG',
@@ -36,31 +39,44 @@ const withGKNFCReader = config => {
 
     return config;
   });
-
-  config = withXcodeProject(config, config => {
-    const deploymentTarget = '14.0';
+}
+// Function to modify the iOS deployment target
+function withIosDeploymentTarget(config, {deploymentTarget = '14.0'} = {}) {
+  return withXcodeProject(config, config => {
     const {project} = config.modResults;
+    if (!project) {
+      throw new Error('Xcode project is not properly initialized.');
+    }
 
-    // Update the iOS deployment target in the Xcode project
-    project.updateBuildProperty(
-      'IPHONEOS_DEPLOYMENT_TARGET',
-      deploymentTarget,
-      'Release',
-    );
-    project.updateBuildProperty(
-      'IPHONEOS_DEPLOYMENT_TARGET',
-      deploymentTarget,
-      'Debug',
-    );
+    // Update the iOS Deployment Target
+    const configurations = project.pbxXCBuildConfigurationSection();
+    for (const key in configurations) {
+      const configuration = configurations[key];
+      if (typeof configuration.buildSettings !== 'undefined') {
+        // Set deployment target for each configuration (e.g., Debug, Release)
+        configuration.buildSettings.IPHONEOS_DEPLOYMENT_TARGET =
+          deploymentTarget;
+      }
+    }
 
     return config;
   });
+}
+
+// Combine both mods in a single plugin
+const withGKNFCReader = (
+  config,
+  {deploymentTarget = '14.0', infoPlistChanges = {}, entitlements = {}},
+) => {
+  config = withCustomInfoPlist(config, infoPlistChanges); // Modifying Info.plist
+  config = withCustomEntitlements(config, entitlements); // Modifying entitlements
+  config = withIosDeploymentTarget(config, {deploymentTarget}); // Modifying iOS Deployment Target
   return config;
 };
 
-// Plugin metadata to avoid re-running the plugin multiple times
+// Use `createRunOncePlugin` to ensure it runs once
 module.exports = createRunOncePlugin(
   withGKNFCReader,
   'with-gk-nfc-reader',
-  '1.0.9',
+  '1.0.10',
 );

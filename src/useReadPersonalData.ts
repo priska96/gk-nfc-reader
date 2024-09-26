@@ -1,22 +1,24 @@
-import {useEffect, useState} from 'react';
-import RNNFCLoginController, {
+import { useEffect, useState } from "react";
+import {
+  readPersonalDataNative,
   eventEmitter,
   PState,
   ReadPersonalDataOptions,
-} from './RNNFCLoginController';
+} from "./RNNFCLoginController";
 
 export const useReadPersonalData = () => {
-  const [res, setRes] = useState('');
+  const [res, setRes] = useState("");
   const [state, setState] = useState<PState>({
-    state: 'idle',
+    state: "idle",
     value: false,
-    error: '',
+    error: "",
   });
 
   useEffect(() => {
+    if (!eventEmitter) return;
     // Subscribe to the event emitter
-    const subscription = eventEmitter.addListener('onStatusChange', event => {
-      console.log('State updated:', event);
+    const subscription = eventEmitter.addListener("onStatusChange", (event) => {
+      console.log("State updated:", event);
       setState(event); // Update the local state with the received event
     });
 
@@ -24,26 +26,26 @@ export const useReadPersonalData = () => {
     return () => {
       subscription.remove();
     };
-  }, []);
+  }, [eventEmitter]);
 
   const readPersonalData = ({
     can,
     pin,
     checkBrainpoolAlgorithm,
   }: ReadPersonalDataOptions) => {
-    RNNFCLoginController.readPersonalData({
+    readPersonalDataNative({
       can,
       pin,
       checkBrainpoolAlgorithm,
     })
       .then((result: string) => {
         setRes(result); // Store the result in state
-        console.log('success');
+        console.log("success");
       })
       .catch((error: unknown) => {
-        console.error('error', error);
+        console.error("error", error);
       });
   };
 
-  return {res, state, readPersonalData};
+  return { res, state, readPersonalData };
 };

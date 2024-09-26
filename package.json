@@ -2,11 +2,25 @@
   "name": "gk-nfc-reader",
   "version": "1.0.10",
   "description": "Reads the Personal Data of eGK viw NFC",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "xed example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
   },
+  "keywords": [
+    "react-native",
+    "expo",
+    "gk-nfc-reader",
+    "GKNFCReader"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/priska96/gk-nfc-reader.git"
@@ -16,5 +30,16 @@
   "bugs": {
     "url": "https://github.com/priska96/gk-nfc-reader/issues"
   },
-  "homepage": "https://github.com/priska96/gk-nfc-reader#readme"
+  "homepage": "https://github.com/priska96/gk-nfc-reader#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.5.2",
+    "expo-modules-core": "^1.12.24"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
 }

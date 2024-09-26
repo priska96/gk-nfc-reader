@@ -13,3 +13,5 @@ Pods/
 *.xcworkspace
 *.xcuserdata
 *.xcuserstate
+
+node_modules

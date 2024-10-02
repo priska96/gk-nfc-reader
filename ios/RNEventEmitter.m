@@ -1,3 +1,10 @@
+//
+//  RNEventEmitter.m
+//
+//  Created by Priska Kohnen on 20.09.24.
+//
+
+
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
 

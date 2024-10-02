@@ -1,6 +1,5 @@
 //
 //  RNShare.m
-//  MyNfcApp2
 //
 //  Created by Priska Kohnen on 05.09.24.
 //
@@ -15,9 +14,6 @@
 RCT_EXTERN_METHOD(readPersonalData:(ReadPersonalDataOptions *)readPersonalDataOptions
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
-
-RCT_EXTERN_METHOD(getPState:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject)
-
 RCT_EXTERN_METHOD(getResults)
 
 @end

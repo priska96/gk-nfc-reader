@@ -20,5 +20,11 @@ Pod::Spec.new do |s|
 
     s.vendored_frameworks = 'ios/*.framework'
 
+    # Specify the resource files, including localization files
+    s.resources = [
+      'Resources/**/*.{png,jpeg,jpg,json,storyboard,xib}',   # Example for other resources
+      'Resources/**/*.lproj/*.strings',                      # Include .strings files for localization
+      'Resources/**/*.lproj/*.plist'                         # Include .plist files for localization
+    ]
   end
   

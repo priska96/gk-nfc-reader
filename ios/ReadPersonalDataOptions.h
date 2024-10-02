@@ -1,3 +1,9 @@
+//
+//  ReadPersonalDataOptions.h
+//
+//  Created by Priska Kohnen on 25.09.24.
+//
+
 #import <Foundation/Foundation.h>
 
 @interface ReadPersonalDataOptions : NSObject

@@ -1,4 +1,11 @@
+//
+//  RNEventEmitter.swift
+//
+//  Created by Priska Kohnen on 20.09.24.
+//
+
 import Foundation
+import React
 
 @objc(RNEventEmitter)
 class RNEventEmitter : RCTEventEmitter {

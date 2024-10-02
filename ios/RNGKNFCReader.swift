@@ -1,18 +1,9 @@
 //
-//  Copyright (c) 2023 gematik GmbH
+//  XMLParserDelegate.swift
 //
-//  Licensed under the Apache License, Version 2.0 (the License);
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
+//  Created by Priska Kohnen on 05.09.24.
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an 'AS IS' BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
-//
+
 
 import CardReaderProviderApi
 import Combine
@@ -43,72 +34,44 @@ public class RNGKNFCReader: NSObject {
   
   
   @Published
-  private var pState: ViewState<Bool, Swift.Error> = .idle
-  var state: Published<ViewState<Bool, Swift.Error>>.Publisher {
-    $pState
-  }
-  
-  
+  private var nfcReaderState: ViewState<ViewResult, Swift.Error> = .idle
   var results: [ReadingResult] = []
-  
   var cancellable: AnyCancellable?
   
   
   override init() {
     super.init()
-    
     // Monitor changes to statusMessage
-    cancellable = $pState.sink { [weak self] newValue in
+    cancellable = $nfcReaderState.sink { [weak self] newValue in
       self?.sendStatusUpdateToReactNativeWrapper(state: newValue)
     }
   }
   
   // Method to trigger status update in React Native
-  func sendStatusUpdateToReactNativeWrapper(state: ViewState<Bool, Swift.Error>) {
-    print("sendStatusUpdateToReactNativeWrapper")
+  func sendStatusUpdateToReactNativeWrapper(state: ViewState<ViewResult, Swift.Error>) {
     // Send event or method call to React Native here
     switch state {
     case .idle:
-      print("idle")
       self.sendStatusUpdateToReactNative(["state": "idle"])
     case .loading:
-      print("loading")
       self.sendStatusUpdateToReactNative(["state": "loading"])
     case .value(let value):
-      print("value")
-      self.sendStatusUpdateToReactNative(["state": "success", "value": value])
+      switch value{
+      case .dictionary(let dict):
+        self.sendStatusUpdateToReactNative(["state": "success", "value": dict.toDictionary() ?? ["":""]])
+      case .bool(let boolValue):
+        self.sendStatusUpdateToReactNative(["state": "success", "value": boolValue])
+      }
     case .error(let error):
-      print("erro")
       self.sendStatusUpdateToReactNative(["state": "failure", "error": error.localizedDescription])
     }  }
   
   // Method to trigger status update in React Native
   @objc func sendStatusUpdateToReactNative(_ body: NSDictionary) {
-    print("sendStatusUpdateToReactNative")
-    
     guard let myEmitter =  RNEventEmitter.emitter else {
-      print("myEmitter is nil")
       return
     }
     myEmitter.emitEvent(withName: "onStatusChange", body: body)
-  }
-  
-  // Expose this method to React Native
-  @objc
-  func getPState(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
-    //Task{@MainActor in
-    // Return the current state as a dictionary
-    switch pState {
-    case .idle:
-      resolve(["state": "idle"])
-    case .loading:
-      resolve(["state": "loading"])
-    case .value(let value):
-      resolve(["state": "success", "value": value])
-    case .error(let error):
-      resolve(["state": "failure", "error": error.localizedDescription])
-    }
-    //}
   }
   
   @objc func getResults() -> String {
@@ -116,16 +79,8 @@ public class RNGKNFCReader: NSObject {
       (self.results)
         .sorted { $0.timestamp > $1.timestamp }
     }
-    
     let res = readingResults.map { $0.formattedDescription() }
     return res.joined(separator: "\n\n")
-  }
-  
-  @MainActor
-  func dismissError() async {
-    if pState.error != nil {
-      pState = .idle
-    }
   }
   
   let messages = NFCHealthCardSession<Data>.Messages(
@@ -139,17 +94,13 @@ public class RNGKNFCReader: NSObject {
   )
   
   @objc func readPersonalData(_ readPersonalDataOptions: ReadPersonalDataOptions, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
-    print("data desc: ", readPersonalDataOptions.can!)
     Task{
       @MainActor in
       await self._readPersonalData(readPersonalDataOptions:readPersonalDataOptions)
-      
-      print("state after readPersonalData ", await self.pState)
-      if self.pState.error != nil {
-        reject("error", getResults(), pState.error)
+      if self.nfcReaderState.error != nil {
+        reject("error", getResults(), nfcReaderState.error)
       }
       else{
-        print("resolve")
         resolve(getResults())
       }
     }
@@ -159,9 +110,8 @@ public class RNGKNFCReader: NSObject {
   func _readPersonalData(readPersonalDataOptions: ReadPersonalDataOptions) async {
     let can = readPersonalDataOptions.can //RCTConvert.nsString(readPersonalDataOptions["can"]) ?? "123456"
     
-    print("can: ", can!)
-    if case .loading = await pState { return }
-    self.pState = .loading(nil)
+    if case .loading = await nfcReaderState { return }
+    self.nfcReaderState = .loading(nil)
     
     // try open session and init operation
     // tag::nfcHealthCardSession_init[]
@@ -179,26 +129,30 @@ public class RNGKNFCReader: NSObject {
             // handle the case the Session could not be initialized
     else {
       // end::nfcHealthCardSession_init[]
-      
-      print("got error. update state")
-      self.pState = .error(NFCHealthCardSessionError.couldNotInitializeSession)
-      let result = ReadingResult(result: self.pState, commands: CommandLogger.commands)
+      self.nfcReaderState = .error(NFCHealthCardSessionError.couldNotInitializeSession)
+      let result = ReadingResult(result: self.nfcReaderState, commands: CommandLogger.commands)
       self.results.append(result)
       
       return
     }
     
-    let personalData: Data
+    let personalDataRaw: Data
+    let personalDataDict: [String:String]
+    let personalData : PersonalData
+    
     // excetue previously inited operation
     do {
       
       // tag::nfcHealthCardSession_execute[]
-      personalData = try await nfcHealthCardSession.executeOperation()
+      personalDataRaw = try await nfcHealthCardSession.executeOperation()
       // end::nfcHealthCardSession_execute[]
       
-      print("got result. update state ad results")
-      self.pState = .value(true)
-      let result = ReadingResult(result: self.pState, commands: CommandLogger.commands)
+      personalDataDict = try parseData(dataRaw: personalDataRaw)
+      personalData = PersonalData(dictionary: personalDataDict)
+      
+      self.nfcReaderState = .value(.dictionary(personalData))
+      
+      let result = ReadingResult(result: self.nfcReaderState, commands: CommandLogger.commands)
       self.results.append(result)
       
       // tag::nfcHealthCardSession_errorHandling[]
@@ -207,16 +161,15 @@ public class RNGKNFCReader: NSObject {
       // here we especially handle when the user canceled the session
       
       Logger.nfcDemo.debug("User cancled session. Reset state to idle")
-      self.pState = .idle
+      self.nfcReaderState = .idle
       // Do some view-property update
       // Calling .invalidateSession() is not strictly necessary
       //  since nfcHealthCardSession does it while it's de-initializing.
       nfcHealthCardSession.invalidateSession(with: nil)
       return
     } catch {
-      print("got error. update state")
-      self.pState = .error(error)
-      let result = ReadingResult(result: self.pState, commands: CommandLogger.commands)
+      self.nfcReaderState = .error(error)
+      let result = ReadingResult(result: self.nfcReaderState, commands: CommandLogger.commands)
       self.results.append(result)
       
       nfcHealthCardSession.invalidateSession(with: error.localizedDescription)
@@ -225,128 +178,58 @@ public class RNGKNFCReader: NSObject {
     // end::nfcHealthCardSession_errorHandling[]
     Logger.nfcDemo.debug("Perosnal Data: \(personalData)")
   }
-}
-
-
-public enum HealthCardCommandError: Swift.Error, LocalizedError {
-  /// In case the PIN or CAN could not be constructed from input
-  case hcaPDUnavailable
   
-  public var errorDescription: String? {
-    switch self {
-    case .hcaPDUnavailable:
-      return NSLocalizedString("hca_pd_unavailable", comment: "")
+  func parseData(dataRaw: Data) throws -> [String:String]{
+    var data = dataRaw
+    // remove 2 bytes indicating length
+    data.removeFirst(2)
+    
+    // uncompress and decode
+    do{
+      let uncompressedData = try decompressZlib(data)
+      
+      do{
+        let xmlString = String(data: uncompressedData, encoding: .utf8)
+        print("Read XML OutputData of MF/DF.HCA/EF.hcaPD: \(xmlString ?? "")")
+        
+        do{
+          let extractor = XMLDataExtractor()
+          let parsedData = try extractor.parse(xmlString: xmlString!)
+          
+          print("Extracted Data: \(parsedData ?? ["":""])")
+          return parsedData!
+        } catch {
+          throw ParseResponseDataError.xmlParserError(error as! XMLParsingError)
+        }
+      } catch {
+        throw ParseResponseDataError.convertToXMLString
+      }
+    }
+    catch{
+      throw ParseResponseDataError.zLibError(error as! ZlibError)
     }
   }
+  
 }
+
 
 extension HealthCardType {
   
-  
-  func dataFromHexString(hexString: String) -> Data? {
-    var data = Data()
-    var tempHexString = hexString
-    
-    // Ensure string length is even (2 chars per byte)
-    if hexString.count % 2 != 0 {
-      tempHexString = "0" + hexString
-    }
-    
-    var currentIndex = tempHexString.startIndex
-    
-    while currentIndex < tempHexString.endIndex {
-      let byteString = tempHexString[currentIndex..<tempHexString.index(currentIndex, offsetBy: 2)]
-      let byte = UInt8(byteString, radix: 16)
-      data.append(byte!)
-      currentIndex = tempHexString.index(currentIndex, offsetBy: 2)
-    }
-    
-    return data
-  }
-  
   func selectAndReadHcaPD() async throws -> Data {
-    
     CommandLogger.commands.append(Command(message: "Select Personal Data and Read file", type: .description))
+    
     let dedicatedFile = DedicatedFile(
       aid: EgkFileSystem.DF.HCA.aid,
       fid: EgkFileSystem.EF.hcaPD.fid // holds Personal Data of health card holder
     )
     let (responseStatus, fileControlParameter) = try await self.selectDedicatedAsync(file: dedicatedFile, fcp: true )
-    print("responseStatus ", responseStatus)
-    print("fileControlParam ", fileControlParameter ?? "nil")
     
     guard let fcp = fileControlParameter, let readSize = fcp.readSize
     else {
       throw ReadError.fcpMissingReadSize(state: responseStatus)
     }
     let data = try await self.readSelectedFileAsync(expected: Int(readSize))
-    
-    /*
-     let str = try await self.readSelectedFileAsync(expected: Int(readSize))
-     .map{ data in
-     //print("data: " , data )
-     return data
-     }
-     let myData = try data.hexString().hexa()
-     let myData1 = dataFromHexString(hexString: data.hexString())
-     print("myData", myData)
-     print("myData1", myData1)
-     */
-    // unzip and decode here
-    /*do{
-     let lengthBytes = data.prefix(2)
-     let length = UInt16(lengthBytes.withUnsafeBytes { $0.load(as: UInt16.self) })
-     let compressedData = data.suffix(from: 1)//.prefix(Int(length))
-     
-     let uncompressedData = try data.gunzipped()
-     
-     if let xmlString = String(data: uncompressedData, encoding: .isoLatin1) {
-     print("Read XML OutputData of MF/DF.HCA/EF.hcaPD: \(xmlString)")
-     } else {
-     fatalError("Error converting data to string")
-     }
-     }
-     catch{
-     fatalError("Error decompressing gzip data \(error)")
-     }
-     */
-    
-    print("data description", data.description)
-    print("data base64", data.base64EncodedString())
-    
-    let cfEnc = CFStringEncodings.isoLatin9
-    let nsEnc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEnc.rawValue))
-    let isoLatin9encoding = String.Encoding(rawValue: nsEnc) // String.Encoding
-    
-    guard let xmlString = String(data: data, encoding: isoLatin9encoding)
-    else {
-      print("cannot be transformed ")
-      throw ReadError.unexpectedResponse(state: responseStatus)
-    }
-    print("Read XML OutputData of MF/DF.HCA/EF.hcaPD: \(xmlString)")
-    
     return data
+    
   }
 }
-
-extension PSOAlgorithm {
-  // [REQ:gemSpec_Krypt:A_17207] Assure only brainpoolP256r1 is used
-  var isBp256r1: Bool {
-    if case .signECDSA = self {
-      return true
-    }
-    return false
-  }
-}
-
-extension Bool {
-  var asPinVerifyErrorMessage: String? {
-    if self {
-      return nil
-    } else {
-      return "False pincode (or blocked card)"
-    }
-  }
-  
-}
-

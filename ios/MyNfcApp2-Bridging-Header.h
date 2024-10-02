@@ -8,3 +8,4 @@
 #import <React/RCTLog.h>
 
 #import "ReadPersonalDataOptions.h"
+#import "PersonalData.h"

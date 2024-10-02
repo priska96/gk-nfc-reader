@@ -1,3 +1,9 @@
+//
+//  RCTConvert+ReadPersonalDataOptions.m
+//
+//  Created by Priska Kohnen on 25.09.24.
+//
+
 #import "RCTConvert+ReadPersonalDataOptions.h"
 
 @implementation RCTConvert (ReadPersonalDataOptions)

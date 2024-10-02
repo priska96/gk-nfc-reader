@@ -1,0 +1,58 @@
+/*
+  Localizable.strings
+  MyNfcApp2
+*/
+
+/*
+  NFC Reader
+ */
+
+"nfc_txt_discoveryMessage" = "Bitte legen Sie die Karte auf Ihr iPhone";
+"nfc_txt_connectMessage" = "Verbinden";
+"nfc_txt_secureChannel" = "Herstellen einer sicheren Verbindung";
+"nfc_txt_noCardMessage" = "Keine Karte gefunden";
+"nfc_txt_multipleCardsMessage" = "Es wurden mehrere Karten gefunden";
+"nfc_txt_unsupportedCardMessage" = "Karte wird nicht unterstützt";
+"nfc_txt_connectionErrorMessage" = "NFC Kommunikationsfehler";
+"nfc_txt_msg_secure_channel" = "Sichere Verbindung aufbauen...";
+"nfc_txt_msg_failure" = "Fehler!";
+"nfc_txt_msg_reset_success" = "Erfolgreich!";
+
+"nfc_txt_selectHca" = "HCA Auswählen";
+"nfc_txt_msg_readHCAPDShort" = "HCA.PDShort Lesen";
+"nfc_txt_msg_readHCAPD" = "HCA.PD Lesen";
+"invalid_can_or_pin_format" = "Falsches CAN oder PIN Format";
+"hca_pd_unavailable" = "HCA.PD ist nicht verfügbar";
+/*
+  Reading Results
+ */
+"rdr_txt_sec_title_commands" = "Kommandos";
+"rdr_txt_sec_title_overview" = "Übersicht";
+"rdr_txt_date" = "Datum:   ";
+"rdr_txt_result" = "Ergebnis:";
+"rdr_btn_copy" = "Kopieren";
+"rdr_txt_detail_title" = "Details";
+
+
+/*
+  Error
+*/
+"unexpected_response" = "Unerwartete Antwort";
+"no_data" = "Keine Daten";
+"fcp_missing_read_size" = "readSize Attribut fehlt";
+
+"failed_to_select_aid" = "Auswählen von aid (Application Identifier) fehlgeschlagen";
+"failed_to_select_fid" = "Auswählen von fid (File Identifier) fehlgeschlagen";
+
+"zlib_initialization_failed" = "Zlib-Initialisierung fehlgeschlagen. Der Dekompressionsstream konnte nicht initialisiert werden.";
+"zlib_stream_error" = "Ein Fehler ist im Dekompressionsstream aufgetreten.";
+"zlib_decompression_failed" = "Zlib-Dekompression fehlgeschlagen. Der Stream ist während der Dekompression auf einen Fehler gestoßen.";
+"zlib_incomplete_decompression" = "Die Dekompression wurde nicht erfolgreich abgeschlossen. Einige Daten könnten fehlen.";
+
+"unzipped_to_xml_string" = "Fehler beim dekodieren der Daten in ein XML-String";
+
+"xml_data_conversion_failed" = "Die Konvertierung des XML-Strings in Data ist fehlgeschlagen.";
+"xml_parsing_failed" = "Das Parsen des XML ist fehlgeschlagen.";
+"xml_unknown_element" = "Ein unbekanntes Element wurde gefunden: %@.";
+
+

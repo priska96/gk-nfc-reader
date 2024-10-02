@@ -53,14 +53,4 @@ enum ViewState<Value, Failure> {
     }
     return nil
   }
-  
-  func mapToNSDictionary() -> NSDictionary{
-    var dict: NSDictionary = [
-      "idle": self.isIdle,
-      "loading": self.isLoading,
-      "value": self.value!,
-      "error": self.error!// This represents a null value in Swift
-    ]
-    return dict
-  }
 }

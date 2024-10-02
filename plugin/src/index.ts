@@ -59,7 +59,7 @@ const withGKNFCReader: ConfigPlugin<{
         podfile,
         [
           ...lines.slice(0, index),
-          `  pod 'gk-nfc-reader', :path => '../..'`,
+          `  pod 'gk-nfc-reader', :path => 'https://github.com/priska96/gk-nfc-reader.git'`,
           ...lines.slice(index),
         ].join("\n")
       );

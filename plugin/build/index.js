@@ -41,7 +41,7 @@ const withGKNFCReader = (config, { nfcReaderUsageDescription, deploymentTarget }
             const index = lines.findIndex((line) => /\s+use_expo_modules!/.test(line));
             (0, fs_1.writeFileSync)(podfile, [
                 ...lines.slice(0, index),
-                `  pod 'gk-nfc-reader', :path => '../..'`,
+                `  pod 'gk-nfc-reader', :path => 'https://github.com/priska96/gk-nfc-reader.git'`,
                 ...lines.slice(index),
             ].join("\n"));
             return cfg;

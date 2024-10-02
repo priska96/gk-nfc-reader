@@ -1,1 +1,1 @@
-{"version":3,"file":"useReadPersonalData.d.ts","sourceRoot":"","sources":["../src/useReadPersonalData.ts"],"names":[],"mappings":"AACA,OAAO,EAGL,MAAM,EACN,uBAAuB,EACxB,MAAM,wBAAwB,CAAC;AAEhC,eAAO,MAAM,mBAAmB;;;+DA0B3B,uBAAuB;CAgB3B,CAAC"}
+{"version":3,"file":"useReadPersonalData.d.ts","sourceRoot":"","sources":["../src/useReadPersonalData.ts"],"names":[],"mappings":"AACA,OAAO,EAGL,cAAc,EAEd,uBAAuB,EACxB,MAAM,iBAAiB,CAAC;AAEzB,eAAO,MAAM,mBAAmB;;;+DA0B3B,uBAAuB;CAgB3B,CAAC"}

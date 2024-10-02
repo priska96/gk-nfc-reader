@@ -2,16 +2,17 @@ import { useEffect, useState } from "react";
 import {
   readPersonalDataNative,
   eventEmitter,
-  PState,
+  NFCReaderState,
+  State,
   ReadPersonalDataOptions,
-} from "./RNNFCLoginController";
+} from "./RNGKNFCReader";
 
 export const useReadPersonalData = () => {
-  const [res, setRes] = useState("");
-  const [state, setState] = useState<PState>({
-    state: "idle",
-    value: false,
-    error: "",
+  const [result, setResult] = useState("");
+  const [state, setState] = useState<NFCReaderState>({
+    state: State.idle,
+    value: undefined,
+    error: undefined,
   });
 
   useEffect(() => {
@@ -38,14 +39,14 @@ export const useReadPersonalData = () => {
       pin,
       checkBrainpoolAlgorithm,
     })
-      .then((result: string) => {
-        setRes(result); // Store the result in state
+      .then((res: string) => {
+        setResult(res); // Store the result in state
         console.log("success");
       })
       .catch((error: unknown) => {
-        console.error("error", error);
+        console.log("error", error);
       });
   };
 
-  return { res, state, readPersonalData };
+  return { result, state, readPersonalData };
 };

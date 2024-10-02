@@ -6,10 +6,28 @@ if (!RNEventEmitter || !RNGKNFCReader) {
 }
 
 export const eventEmitter = new NativeEventEmitter(RNEventEmitter);
+export interface PersonalData {
+  lastname: string;
+  firstname: string;
+  birthday: string;
+  gender: string;
+  street: string;
+  housenumber: string;
+  zipCode: string;
+  city: string;
+  counrtyCode: string;
+  insuranceId: string;
+}
 
-export interface PState {
-  state: "idle" | "loading" | "value" | "error";
-  value?: boolean;
+export enum State {
+  idle = "idle",
+  loading = "loading",
+  success = "success",
+  error = "error",
+}
+export interface NFCReaderState {
+  state: State;
+  value?: PersonalData;
   error?: string;
 }
 export interface ReadPersonalDataOptions {

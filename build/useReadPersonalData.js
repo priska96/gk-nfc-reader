@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { readPersonalDataNative, eventEmitter, } from "./RNNFCLoginController";
+import { readPersonalDataNative, eventEmitter, State, } from "./RNGKNFCReader";
 export const useReadPersonalData = () => {
-    const [res, setRes] = useState("");
+    const [result, setResult] = useState("");
     const [state, setState] = useState({
-        state: "idle",
-        value: false,
-        error: "",
+        state: State.idle,
+        value: undefined,
+        error: undefined,
     });
     useEffect(() => {
         if (!eventEmitter)
@@ -26,14 +26,14 @@ export const useReadPersonalData = () => {
             pin,
             checkBrainpoolAlgorithm,
         })
-            .then((result) => {
-            setRes(result); // Store the result in state
+            .then((res) => {
+            setResult(res); // Store the result in state
             console.log("success");
         })
             .catch((error) => {
-            console.error("error", error);
+            console.log("error", error);
         });
     };
-    return { res, state, readPersonalData };
+    return { result, state, readPersonalData };
 };
 //# sourceMappingURL=useReadPersonalData.js.map

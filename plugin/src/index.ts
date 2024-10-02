@@ -43,8 +43,8 @@ const withGKNFCReader: ConfigPlugin<{
 
     return config;
   });
-
-  config = withDangerousMod(config, [
+  // maybe only needed when developing the plugin locally
+  /*config = withDangerousMod(config, [
     "ios",
     (cfg) => {
       const { platformProjectRoot } = cfg.modRequest;
@@ -59,14 +59,15 @@ const withGKNFCReader: ConfigPlugin<{
         podfile,
         [
           ...lines.slice(0, index),
-          `  pod 'gk-nfc-reader', :path => 'https://github.com/priska96/gk-nfc-reader.git'`,
+          `  pod 'gk-nfc-reader', :path => '../..'`,
           ...lines.slice(index),
         ].join("\n")
       );
 
       return cfg;
     },
-  ]);
+  ]);*/
+
   config = withIosDeploymentTarget(config, { ios: { deploymentTarget } });
 
   return config;

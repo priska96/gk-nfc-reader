@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_plugins_1 = require("expo/config-plugins");
 const ios_1 = require("expo-build-properties/build/ios");
-const path_1 = require("path");
-const fs_1 = require("fs");
 const withGKNFCReader = (config, { nfcReaderUsageDescription, deploymentTarget }) => {
     config = (0, config_plugins_1.withInfoPlist)(config, (config) => {
         // Add your Info.plist modifications here
@@ -31,22 +29,30 @@ const withGKNFCReader = (config, { nfcReaderUsageDescription, deploymentTarget }
         ];
         return config;
     });
-    config = (0, config_plugins_1.withDangerousMod)(config, [
-        "ios",
-        (cfg) => {
-            const { platformProjectRoot } = cfg.modRequest;
-            const podfile = (0, path_1.resolve)(platformProjectRoot, "Podfile");
-            const contents = (0, fs_1.readFileSync)(podfile, "utf-8");
-            const lines = contents.split("\n");
-            const index = lines.findIndex((line) => /\s+use_expo_modules!/.test(line));
-            (0, fs_1.writeFileSync)(podfile, [
-                ...lines.slice(0, index),
-                `  pod 'gk-nfc-reader', :path => 'https://github.com/priska96/gk-nfc-reader.git'`,
-                ...lines.slice(index),
-            ].join("\n"));
-            return cfg;
-        },
-    ]);
+    // maybe only needed when developing the plugin locally
+    /*config = withDangerousMod(config, [
+      "ios",
+      (cfg) => {
+        const { platformProjectRoot } = cfg.modRequest;
+        const podfile = resolve(platformProjectRoot, "Podfile");
+        const contents = readFileSync(podfile, "utf-8");
+        const lines = contents.split("\n");
+        const index = lines.findIndex((line) =>
+          /\s+use_expo_modules!/.test(line)
+        );
+  
+        writeFileSync(
+          podfile,
+          [
+            ...lines.slice(0, index),
+            `  pod 'gk-nfc-reader', :path => '../..'`,
+            ...lines.slice(index),
+          ].join("\n")
+        );
+  
+        return cfg;
+      },
+    ]);*/
     config = (0, ios_1.withIosDeploymentTarget)(config, { ios: { deploymentTarget } });
     return config;
 };

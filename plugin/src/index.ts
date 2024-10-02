@@ -2,8 +2,12 @@ import {
   withEntitlementsPlist,
   withInfoPlist,
   ConfigPlugin,
-  withXcodeProject,
+  withDangerousMod,
 } from "expo/config-plugins";
+
+import { withIosDeploymentTarget } from "expo-build-properties/build/ios";
+import { resolve } from "path";
+import { readFileSync, writeFileSync } from "fs";
 
 const withGKNFCReader: ConfigPlugin<{
   nfcReaderUsageDescription: string;
@@ -40,25 +44,30 @@ const withGKNFCReader: ConfigPlugin<{
     return config;
   });
 
-  // config = withXcodeProject(config, (config) => {
-  //   const { project } = config.modResults;
-  //   if (!project) {
-  //     throw new Error("Xcode project is not properly initialized.");
-  //   }
+  config = withDangerousMod(config, [
+    "ios",
+    (cfg) => {
+      const { platformProjectRoot } = cfg.modRequest;
+      const podfile = resolve(platformProjectRoot, "Podfile");
+      const contents = readFileSync(podfile, "utf-8");
+      const lines = contents.split("\n");
+      const index = lines.findIndex((line) =>
+        /\s+use_expo_modules!/.test(line)
+      );
 
-  //   // Update the iOS Deployment Target
-  //   const configurations = project.pbxXCBuildConfigurationSection();
-  //   for (const key in configurations) {
-  //     const configuration = configurations[key];
-  //     if (typeof configuration.buildSettings !== "undefined") {
-  //       // Set deployment target for each configuration (e.g., Debug, Release)
-  //       configuration.buildSettings.IPHONEOS_DEPLOYMENT_TARGET =
-  //         deploymentTarget;
-  //     }
-  //   }
+      writeFileSync(
+        podfile,
+        [
+          ...lines.slice(0, index),
+          `  pod 'gk-nfc-reader', :path => '../..'`,
+          ...lines.slice(index),
+        ].join("\n")
+      );
 
-  //   return config;
-  // });
+      return cfg;
+    },
+  ]);
+  config = withIosDeploymentTarget(config, { ios: { deploymentTarget } });
 
   return config;
 };

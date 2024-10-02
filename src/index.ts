@@ -1,1 +1,1 @@
-export {useReadPersonalData} from './useReadPersonalData';
+export { useReadPersonalData } from "./useReadPersonalData";

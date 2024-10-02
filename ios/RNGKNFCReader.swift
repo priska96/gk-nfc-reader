@@ -24,8 +24,8 @@ import Helper
 import NFCCardReaderProvider
 import OSLog
 
-@objc(RNNFCLoginController)
-public class RNNFCLoginController: NSObject {
+@objc(RNGKNFCReader)
+public class RNGKNFCReader: NSObject {
   public enum Error: Swift.Error, LocalizedError {
     /// In case the PIN or CAN could not be constructed from input
     case cardError(NFCHealthCardSessionError)
@@ -90,7 +90,7 @@ public class RNNFCLoginController: NSObject {
       print("myEmitter is nil")
       return
     }
-    myEmitter.sendEvent(withName: "onStatusChange", body: body)
+    myEmitter.emitEvent(withName: "onStatusChange", body: body)
   }
   
   // Expose this method to React Native

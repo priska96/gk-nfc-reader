@@ -10,7 +10,7 @@
 #import "ReadPersonalDataOptions.h"
 #import <React/RCTConvert.h>
 
-@interface RCT_EXTERN_MODULE(RNNFCLoginController, NSObject)
+@interface RCT_EXTERN_MODULE(RNGKNFCReader, NSObject)
 
 RCT_EXTERN_METHOD(readPersonalData:(ReadPersonalDataOptions *)readPersonalDataOptions
                   resolve:(RCTPromiseResolveBlock)resolve

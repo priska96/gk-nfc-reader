@@ -1,7 +1,7 @@
 {
   "name": "gk-nfc-reader",
   "version": "1.0.12",
-  "description": "Reads the Personal Data of eGK viw NFC",
+  "description": "Reads the Personal Data of eGK via NFC",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
@@ -31,9 +31,10 @@
     "url": "https://github.com/priska96/gk-nfc-reader/issues"
   },
   "homepage": "https://github.com/priska96/gk-nfc-reader#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.25",
+    "expo-build-properties": "^0.12.5",
+    "expo": "*",
     "expo-module-scripts": "^3.5.2",
     "expo-modules-core": "^1.12.24"
   },
@@ -41,5 +42,10 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "peerDependenciesMeta": {
+    "expo": {
+      "optional": true
+    }
   }
 }

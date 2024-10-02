@@ -1,21 +1,17 @@
 import { NativeEventEmitter, NativeModules } from "react-native";
-const { RNNFCLoginController, RNEventEmitter } = NativeModules;
+const { RNGKNFCReader, RNEventEmitter } = NativeModules;
+
+if (!RNEventEmitter || !RNGKNFCReader) {
+  console.error("Native module not found");
+}
+
+export const eventEmitter = new NativeEventEmitter(RNEventEmitter);
 
 export interface PState {
   state: "idle" | "loading" | "value" | "error";
   value?: boolean;
   error?: string;
 }
-console.log("emitter", { RNEventEmitter });
-
-let eventEmitterRaw: NativeEventEmitter | null = null;
-if (!RNEventEmitter) {
-  console.error("Native module not found");
-} else {
-  eventEmitterRaw = new NativeEventEmitter(RNEventEmitter);
-}
-export const eventEmitter = eventEmitterRaw;
-
 export interface ReadPersonalDataOptions {
   can: string;
   pin?: string;
@@ -25,5 +21,5 @@ export interface ReadPersonalDataOptions {
 export const readPersonalDataNative = (
   options: ReadPersonalDataOptions
 ): Promise<string> => {
-  return RNNFCLoginController.readPersonalData(options);
+  return RNGKNFCReader.readPersonalData(options);
 };

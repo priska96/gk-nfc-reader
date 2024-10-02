@@ -1,6 +1,6 @@
 import { NativeEventEmitter, NativeModules } from "react-native";
-const { RNNFCLoginController, RNEventEmitter } = NativeModules;
-console.log("emitter", { RNEventEmitter });
+const { RNNFCLoginController, RNEventEmitter, RNMod } = NativeModules;
+console.log("emitter", { RNEventEmitter, RNMod, RNNFCLoginController });
 let eventEmitterRaw = null;
 if (!RNEventEmitter) {
     console.error("Native module not found");

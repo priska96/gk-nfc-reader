@@ -1,4 +1,0 @@
-framework module NFCCardReaderProvider {
-  header "NFCCardReaderProvider-Swift.h"
-  requires objc
-}

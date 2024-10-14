@@ -1,4 +1,0 @@
-framework module HealthCardAccess {
-  header "HealthCardAccess-Swift.h"
-  requires objc
-}

@@ -1,4 +1,0 @@
-framework module HealthCardControl {
-  header "HealthCardControl-Swift.h"
-  requires objc
-}

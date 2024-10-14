@@ -1,4 +1,0 @@
-framework module CardReaderProviderApi {
-  header "CardReaderProviderApi-Swift.h"
-  requires objc
-}

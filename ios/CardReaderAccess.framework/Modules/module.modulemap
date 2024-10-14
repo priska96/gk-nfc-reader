@@ -1,4 +1,0 @@
-framework module CardReaderAccess {
-  header "CardReaderAccess-Swift.h"
-  requires objc
-}

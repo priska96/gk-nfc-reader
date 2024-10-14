@@ -1,4 +1,0 @@
-framework module Util {
-  header "Util-Swift.h"
-  requires objc
-}

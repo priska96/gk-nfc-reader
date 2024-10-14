@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.license      = package["license"]
     s.authors      = package["author"]
     s.platforms    = { :ios => "14.0" }
-    s.source       = { :git => "https://github.com/priska96/gk-nfc-reader.git", :tag => "#{s.version}" }
+    s.source       = { :git => package["repository"]["url"], :tag => "#{s.version}" }
   
 
     s.platform     = :ios, '14.0'
@@ -18,7 +18,12 @@ Pod::Spec.new do |s|
     s.source_files  = "ios/*.{h,m,swift}"
     s.dependency "React-Core"
 
-    s.vendored_frameworks = 'ios/*.framework'
+    spm_dependency(s,  
+     url: "https://github.com/gematik/ref-OpenHealthCardKit", 
+     requirement: {kind: "upToNextMajorVersion", minimumVersion: "5.6.0"}, 
+     products: ["CardReaderProviderApi", "HealthCardAccess", "HealthCardControl", "Helper", "NFCCardReaderProvider"] 
+   ) 
+    s.vendored_frameworks = 'ios/*.framework' # include the OpenSSL.framework here. Fix the hardcoded dependency later
 
     # Specify the resource files, including localization files
     s.resources = [
@@ -27,4 +32,3 @@ Pod::Spec.new do |s|
       'Resources/**/*.lproj/*.plist'                         # Include .plist files for localization
     ]
   end
-  

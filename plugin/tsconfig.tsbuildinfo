@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.6.2"}
+{"root":["./src/index.ts","./src/withaddlanguages.ts","./src/withaddnfcentitlements.ts","./src/withaddnfcidentifiers.ts","./src/withaddtoexposqlitepodspec.ts","./src/withaddtopodfile.ts","./src/withandroidgradleproperties.ts","./src/withcopyresources.ts","./src/withstaticdynamic.ts","./src/withxcode15bugfix.ts"],"version":"5.8.3"}

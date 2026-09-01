@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "gk-nfc-reader": ["../src/index"],
+      "gk-nfc-reader/*": ["../src/*"]
+    }
+  }
+}

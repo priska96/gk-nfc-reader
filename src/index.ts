@@ -1,7 +1,7 @@
-export { useReadPersonalData } from "./useReadPersonalData";
+export { useReadPersonalData } from './useReadPersonalData';
 export {
   NFCReaderState,
   PersonalData,
   ReadPersonalDataOptions,
   State,
-} from "./RNGKNFCReader";
+} from './module/ExpoEhcNfc.types';

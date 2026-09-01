@@ -1,74 +1,80 @@
-import {
-  withEntitlementsPlist,
-  withInfoPlist,
-  ConfigPlugin,
-  withDangerousMod,
-} from "expo/config-plugins";
+import { ConfigPlugin } from 'expo/config-plugins';
 
-import { withIosDeploymentTarget } from "expo-build-properties/build/ios";
-import { resolve } from "path";
-import { readFileSync, writeFileSync } from "fs";
+import { withIosDeploymentTarget } from 'expo-build-properties/build/ios';
+import { withStaticDynamic } from './withStaticDynamic';
+import { withAddToPodfile } from './withAddToPodfile';
+import { withXcode15BugFix } from './withXcode15BugFix';
+import { withAddNFCIdentifiers } from './withAddNFCIdentifiers';
+import { withAddNFCEntitlements } from './withAddNFCEntitlements';
+import { withAddLanguages } from './withAddLanguages';
+import { withCopyResources } from './withCopyResources';
+import { withAndroidGradleProperties } from './withAndroidGradleProperties';
+import { withAddToExpoSqlitePodspec } from './withAddToExpoSqlitePodspec';
 
+/**
+ * Configures the Expo project for NFC reader functionality using the GKNFCReader plugin.
+ *
+ * This config plugin sets up necessary iOS and Android configurations, including NFC entitlements,
+ * deployment targets, static libraries, language support, resource copying, and platform-specific bug fixes.
+ * It also provides options for local development and minimum Android SDK version.
+ *
+ * @param config - The existing Expo config to modify.
+ * @param options - Configuration options for the plugin.
+ * @param options.nfcReaderUsageDescription - Description for NFC reader usage (iOS privacy string).
+ * @param options.deploymentTarget - Minimum iOS deployment target version.
+ * @param options.staticLibraryList - Optional list of static libraries to link.
+ * @param options.languages - Optional list of supported languages.
+ * @param options.minSdkVersion - Optional minimum Android SDK version (default: 30).
+ * @param options.kotlinVersion - Optional minimum Android SDK version (default: 30).
+ * @param options.development - Whether to enable local development mode for the plugin.
+ * @returns The modified Expo config with NFC reader support.
+ */
 const withGKNFCReader: ConfigPlugin<{
   nfcReaderUsageDescription: string;
   deploymentTarget: string;
-}> = (config, { nfcReaderUsageDescription, deploymentTarget }) => {
-  config = withInfoPlist(config, (config) => {
-    // Add your Info.plist modifications here
-    config.modResults["NFCReaderUsageDescription"] = nfcReaderUsageDescription;
-    config.modResults[
-      "com.apple.developer.nfc.readersession.iso7816.select-identifiers"
-    ] = [
-      "D2760001448000",
-      "D27600014601",
-      "D27600014606",
-      "D27600000102",
-      "A000000167455349474E",
-      "D27600006601",
-      "D27600014602",
-      "E828BD080FA000000167455349474E",
-      "E828BD080FD27600006601",
-      "D27600014603",
-      "A0000002471001",
-      "A00000030800001000",
-    ];
-    return config;
-  });
+  staticLibraryList?: string[];
+  languages?: string[];
+  minSdkVersion?: number;
+  kotlinVersion?: string;
+  development: boolean;
+}> = (
+  config,
+  {
+    nfcReaderUsageDescription,
+    deploymentTarget,
+    staticLibraryList,
+    languages,
+    development = false,
+    minSdkVersion = 30,
+    kotlinVersion = '2.0.21',
+  }
+) => {
+  config = withAddNFCIdentifiers(config, nfcReaderUsageDescription);
 
-  config = withEntitlementsPlist(config, (config) => {
-    // Modify the entitlements plist here
-    config.modResults["com.apple.developer.nfc.readersession.formats"] = [
-      "TAG",
-    ];
+  config = withAddNFCEntitlements(config);
 
-    return config;
-  });
-  // maybe only needed when developing the plugin locally
-  /*config = withDangerousMod(config, [
-    "ios",
-    (cfg) => {
-      const { platformProjectRoot } = cfg.modRequest;
-      const podfile = resolve(platformProjectRoot, "Podfile");
-      const contents = readFileSync(podfile, "utf-8");
-      const lines = contents.split("\n");
-      const index = lines.findIndex((line) =>
-        /\s+use_expo_modules!/.test(line)
-      );
+  // only needed when developing the plugin locally
+  if (development) {
+    config = withAddToPodfile(config);
+  }
 
-      writeFileSync(
-        podfile,
-        [
-          ...lines.slice(0, index),
-          `  pod 'gk-nfc-reader', :path => '../..'`,
-          ...lines.slice(index),
-        ].join("\n")
-      );
-
-      return cfg;
-    },
-  ]);*/
-
+  config = withAddToExpoSqlitePodspec(config);
   config = withIosDeploymentTarget(config, { ios: { deploymentTarget } });
+
+  if (staticLibraryList) {
+    config = withStaticDynamic(config, staticLibraryList);
+  }
+
+  if (languages) {
+    config = withAddLanguages(config, languages);
+  }
+  config = withCopyResources(config, development);
+  config = withXcode15BugFix(config);
+
+  config = withAndroidGradleProperties(config, {
+    minSdkVersion,
+    kotlinVersion,
+  });
 
   return config;
 };

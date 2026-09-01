@@ -1,0 +1,200 @@
+/*
+  Localizable.strings
+  MyNfcApp2
+*/
+
+/*
+  NFC Reader
+ */
+
+"nfc_txt_discoveryMessage" = "Bitte legen Sie die Karte auf Ihr iPhone";
+"nfc_txt_connectMessage" = "Verbinden";
+"nfc_txt_secureChannel" = "Herstellen einer sicheren Verbindung";
+"nfc_txt_noCardMessage" = "Keine Karte gefunden";
+"nfc_txt_multipleCardsMessage" = "Es wurden mehrere Karten gefunden";
+"nfc_txt_unsupportedCardMessage" = "Karte wird nicht unterstützt";
+"nfc_txt_connectionErrorMessage" = "NFC Kommunikationsfehler";
+"nfc_txt_msg_secure_channel" = "Sichere Verbindung aufbauen...";
+"nfc_txt_msg_failure" = "Fehler!";
+"nfc_txt_msg_reset_success" = "Erfolgreich!";
+
+"nfc_txt_selectHca" = "HCA Auswählen";
+"nfc_txt_msg_readHCAPDShort" = "HCA.PDShort Lesen";
+"nfc_txt_msg_readHCAPD" = "HCA.PD Lesen";
+"invalid_can_or_pin_format" = "Falsches CAN oder PIN Format";
+"hca_pd_unavailable" = "HCA.PD ist nicht verfügbar";
+
+/*
+  Reading Results
+ */
+"rdr_txt_sec_title_commands" = "Kommandos";
+"rdr_txt_sec_title_overview" = "Übersicht";
+"rdr_txt_date" = "Datum:   ";
+"rdr_txt_result" = "Ergebnis:";
+"rdr_btn_copy" = "Kopieren";
+"rdr_txt_detail_title" = "Details";
+
+/*
+  Error
+*/
+"unexpected_response" = "Unerwartete Antwort";
+"no_data" = "Keine Daten";
+"fcp_missing_read_size" = "readSize Attribut fehlt";
+
+"failed_to_select_aid" = "Auswählen von aid (Application Identifier) fehlgeschlagen";
+"failed_to_select_fid" = "Auswählen von fid (File Identifier) fehlgeschlagen";
+
+"zlib_initialization_failed" = "Zlib-Initialisierung fehlgeschlagen. Der Dekompressionsstream konnte nicht initialisiert werden.";
+"zlib_stream_error" = "Ein Fehler ist im Dekompressionsstream aufgetreten.";
+"zlib_decompression_failed" = "Zlib-Dekompression fehlgeschlagen. Der Stream ist während der Dekompression auf einen Fehler gestoßen.";
+"zlib_incomplete_decompression" = "Die Dekompression wurde nicht erfolgreich abgeschlossen. Einige Daten könnten fehlen.";
+
+"unzipped_to_xml_string" = "Fehler beim dekodieren der Daten in ein XML-String";
+
+"xml_data_conversion_failed" = "Die Konvertierung des XML-Strings in Data ist fehlgeschlagen.";
+"xml_parsing_failed" = "Das Parsen des XML ist fehlgeschlagen.";
+"xml_unknown_element" = "Ein unbekanntes Element wurde gefunden: %@.";
+
+
+/*
+  CardError
+*/
+"card_error_security" = "Sicherheitsfehler: %@";
+"card_error_connection" = "Verbindungsfehler: %@";
+"card_error_illegal_state" = "Ungültiger Zustand: %@";
+"card_error_objc" = "ObjC-Fehler mit Exception: %@";
+"card_error_unknown" = "Unbekannter Kartenfehler";
+
+
+/*
+  APDU.Error
+*/
+"apdu_error_command_body_data_too_large" = "Der Befehls-Body ist zu groß";
+"apdu_error_expected_response_length_out_of_bounds" = "Die erwartete Antwortlänge liegt außerhalb des gültigen Bereichs";
+"apdu_error_insufficient_response_data" = "Unzureichende Antwortdaten: %@";
+"apdu_error_unknown" = "Unbekannter APDU-Fehler";
+
+/*
+  HealthCard.Error
+*/
+"healthcard_error_operational" = "Betriebsfehler der zugrunde liegenden Karte";
+"healthcard_error_unexpected_response" = "Unerwartete Antwort: tatsächlich %@, erwartet %@";
+"healthcard_error_unknown_card_type" = "Unbekannter Kartentyp mit Anwendungskennung: %@";
+"healthcard_error_illegal_generation" = "Ungültige Kartengeneration der Version: %@";
+"healthcard_error_unsupported_card_type" = "Nicht unterstützter Kartentyp";
+"healthcard_error_unknown" = "Unbekannter HealthCard-Fehler";
+
+
+/*
+  ApplicationIdentifier.Error
+*/
+"appid_error_illegal_argument" = "Anwendungskennung hat ein ungültiges Argument: %@";
+"appid_error_invalid_length" = "Anwendungskennung hat eine ungültige Länge: %d";
+"appid_error_unknown" = "Unbekannter ApplicationIdentifier-Fehler";
+
+
+/*
+  FileControlParameter.Error
+*/
+"fcp_error_illegal_argument" = "FileControlParameter hat ein ungültiges Argument: %@";
+"fcp_error_asn1_parse" = "FileControlParameter ASN.1 (%@) Parser-Fehler mit Grund: %@";
+"fcp_error_invalid_card" = "FileControlParameter ungültige Karte: %@";
+"fcp_error_unknown" = "Unbekannter FileControlParameter-Fehler";
+
+
+/*
+  FileIdentifier.Error
+*/
+"fileid_error_illegal_argument" = "FileIdentifier-Fehler: ungültiges Argument %@";
+"fileid_error_invalid_length" = "FileIdentifier-Fehler: ungültige Länge %d";
+"fileid_error_unknown" = "Unbekannter FileIdentifier-Fehler";
+
+
+/*
+  Format2Pin.Error
+*/
+"format2pin_error_illegal_argument" = "Format2Pin-Fehler: ungültiges Argument %@";
+"format2pin_error_unknown" = "Unbekannter Format2Pin-Fehler";
+
+
+/*
+  GemCvCertificate.Error
+*/
+"gemcv_error_unexpected_tag" = "GemCvCertificate-Fehler: unerwarteter Tag %@";
+"gemcv_error_missing_tag" = "GemCvCertificate-Fehler: fehlender Tag %@ für Quelle %@";
+"gemcv_error_missing_tag_parameter" = "GemCvCertificate-Fehler: fehlender Tag-Parameter";
+"gemcv_error_unknown" = "Unbekannter GemCvCertificate-Fehler";
+
+
+/*
+  Key.Error
+*/
+"key_error_illegal_argument" = "Key-Fehler: ungültiges Argument %@";
+"key_error_unknown" = "Unbekannter Key-Fehler";
+
+
+/*
+  Password.Error
+*/
+"password_error_illegal_argument" = "Passwort-Fehler: ungültiges Argument %@";
+"password_error_unknown" = "Unbekannter Passwort-Fehler";
+
+
+/*
+  ShortFileIdentifier.Error
+*/
+"sfi_error_illegal_argument" = "ShortFileIdentifier-Fehler: ungültiges Argument %@";
+"sfi_error_unknown" = "Unbekannter ShortFileIdentifier-Fehler";
+
+
+/*
+  CardVersion2.Error
+*/
+"cv2_error_parse" = "CardVersion2 Parser-Fehler: %@";
+"cv2_error_unknown" = "Unbekannter CardVersion2-Fehler";
+
+
+/*
+  HealthCardCommandBuilder.InvalidArgument
+*/
+"hccb_invalid_offset" = "Offset %d außerhalb des gültigen Bereichs. Nutzt ShortFileIdentifier: %@";
+"hccb_invalid_record_data_size" = "Datensatzgröße außerhalb des gültigen Bereichs: %@";
+"hccb_expected_length_zero" = "Erwartete Länge darf nicht null sein";
+"hccb_expected_length_not_wildcard" = "Erwartete Länge %d ist kein Wildcard-Wert";
+"hccb_wrong_mac_length" = "Falsche MAC-Länge: %d";
+"hccb_wrong_hash_length" = "Falsche Hash-Länge %d, erwartet %d";
+"hccb_wrong_signature_length" = "Falsche Signaturlänge %d, erwartet %d";
+"hccb_unsupported_key" = "Nicht unterstützter Schlüssel: %@";
+"hccb_illegal_size" = "Ungültige Größe %d, erwartete Größe %d";
+"hccb_illegal_value" = "Ungültiger Wert %@ für %@, erwartet %@";
+"hccb_illegal_oid" = "Ungültige OID: %@";
+"hccb_unknown" = "Unbekannter HealthCardCommandBuilder.InvalidArgument-Fehler";
+
+
+/* KeyAgreement.Error */
+"ka_illegal_argument" = "Ungültiges Argument";
+"ka_unexpected_answer" = "Unerwartete Antwort von der Karte";
+"ka_infinite_ec_arithmetic" = "Ergebnis der EC-Arithmetik ist unendlich";
+"ka_wrong_can" = "Falsche CAN (MAC-PCD-Verifizierung auf Karte fehlgeschlagen)!";
+"ka_mac_picc_failed" = "MAC-PICC-Verifizierung lokal fehlgeschlagen";
+"ka_no_valid_status" = "Kein gültiger Gesundheitskartenstatus";
+"ka_no_ef_card_access" = "EF.CardAccess nicht verfügbar";
+"ka_unsupported_algorithm" = "Nicht unterstützter Schlüsselaustausch-Algorithmus mit Kennung: %@";
+"ka_unknown_error" = "Unbekannter KeyAgreement-Fehler";
+
+/* NFCHealthCardSessionError */
+"nfc_session_init_failed" = "NFCTagReaderSession konnte nicht initialisiert werden";
+"nfc_session_unsupported_tag" = "Das gelesene Tag wird nicht unterstützt";
+"nfc_wrong_can" = "Falsche CAN (MAC-PCD-Verifizierung auf Karte fehlgeschlagen)!";
+"nfc_unknown_error" = "Unbekannter NFCHealthCardSessionError";
+
+/* NFCTagReaderSession.Error */
+"nfc_tag_session_init_failed" = "NFCTagReaderSession konnte nicht initialisiert werden";
+"nfc_tag_session_unsupported_tag" = "Das gelesene Tag wird nicht unterstützt";
+"nfc_tag_session_unknown_error" = "Unbekannter NFCTagReaderSession-Fehler";
+
+/* NFCCardError */
+"nfc_card_no_card" = "Keine Karte vorhanden";
+"nfc_card_transfer_exception" = "Übertragungsfehler mit Name: %@";
+"nfc_card_send_timeout" = "Sende-Timeout";
+"nfc_card_unknown_error" = "Unbekannter NFCCardError";

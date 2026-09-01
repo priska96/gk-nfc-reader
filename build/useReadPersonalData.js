@@ -1,39 +1,34 @@
-import { useEffect, useState } from "react";
-import { readPersonalDataNative, eventEmitter, State, } from "./RNGKNFCReader";
+import { useEffect, useState } from 'react';
+import { readPersonalDataNative, statusChangeListener } from './module';
+import { State, } from './module/ExpoEhcNfc.types';
 export const useReadPersonalData = () => {
-    const [result, setResult] = useState("");
-    const [state, setState] = useState({
+    const [nfcReaderState, setNfcReaderState] = useState({
         state: State.idle,
         value: undefined,
         error: undefined,
     });
     useEffect(() => {
-        if (!eventEmitter)
-            return;
         // Subscribe to the event emitter
-        const subscription = eventEmitter.addListener("onStatusChange", (event) => {
-            console.log("State updated:", event);
-            setState(event); // Update the local state with the received event
-        });
+        // Update the local state with the received event
+        const subscription = statusChangeListener(setNfcReaderState);
         // Clean up the subscription on component unmount
         return () => {
-            subscription.remove();
+            subscription?.remove();
         };
-    }, [eventEmitter]);
-    const readPersonalData = ({ can, pin, checkBrainpoolAlgorithm, }) => {
-        readPersonalDataNative({
-            can,
-            pin,
-            checkBrainpoolAlgorithm,
-        })
-            .then((res) => {
-            setResult(res); // Store the result in state
-            console.log("success");
-        })
-            .catch((error) => {
-            console.log("error", error);
-        });
+    }, [statusChangeListener]);
+    const readPersonalData = async ({ can, pin, checkBrainpoolAlgorithm, }) => {
+        try {
+            const res = await readPersonalDataNative({
+                can,
+                pin,
+                checkBrainpoolAlgorithm,
+            });
+            console.log('success res:', res);
+        }
+        catch (error) {
+            console.log('error', error);
+        }
     };
-    return { result, state, readPersonalData };
+    return { nfcReaderState, readPersonalData };
 };
 //# sourceMappingURL=useReadPersonalData.js.map

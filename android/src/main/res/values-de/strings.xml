@@ -1,0 +1,20 @@
+<resources>
+    <string name="nfc_txt_discoveryMessage">Halten Sie Ihre Karte an das Lesegerät</string>
+    <string name="nfc_txt_connectMessage">Verbindung zur Karte wird hergestellt...</string>
+    <string name="nfc_txt_secureChannelMessage">Sichere Verbindung wird aufgebaut...</string>
+    <string name="nfc_txt_noCardMessage">Keine Karte erkannt</string>
+    <string name="nfc_txt_multipleCardsMessage">Mehrere Karten erkannt</string>
+    <string name="nfc_txt_unsupportedCardMessage">Nicht unterstützter Kartentyp</string>
+    <string name="nfc_txt_connectionErrorMessage">Verbindung fehlgeschlagen</string>
+    <string name="nfc_txt_wrongCanMessage">Verbindung fehlgeschlagen. Ursache: Falsche CAN eingegben</string>
+    <string name="nfc_txt_unexpectedAnswerFromCardMessage">Verbindung fehlgeschlagen. Ursache: Unerwartete Antwort</string>
+    <string name="nfc_txt_readingErrorMessage">Auswahl und Lesen der Daten fehlgeschlagen</string>
+    <string name="nfc_txt_cancelMessage">Abbrechen</string>
+    <string name="nfc_txt_readingMessage">Lesen von Daten...</string>
+    <string name="nfc_txt_successMessage">Lesen erfolgreich</string>
+    <string name="nfc_bottom_sheet_label">Karte scannen</string>
+    <string name="nfc_txt_unknown_error">Unbekannter Fehler</string>
+    <string name="nfc_txt_error">Fehler</string>
+    <string name="nfc_can_error">Die CAN ist falsch. Sie sollte 6 Ziffern enthalten.</string>
+    <string name="no_activity_error">NFC-Lesefunktion konnte nicht gestartet weden. Bitte versuchen Sie es erneut.</string>
+</resources>

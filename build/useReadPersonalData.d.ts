@@ -1,7 +1,6 @@
-import { NFCReaderState, ReadPersonalDataOptions } from "./RNGKNFCReader";
+import { NFCReaderState, ReadPersonalDataOptions } from './module/ExpoEhcNfc.types';
 export declare const useReadPersonalData: () => {
-    result: string;
-    state: NFCReaderState;
-    readPersonalData: ({ can, pin, checkBrainpoolAlgorithm, }: ReadPersonalDataOptions) => void;
+    nfcReaderState: NFCReaderState;
+    readPersonalData: ({ can, pin, checkBrainpoolAlgorithm, }: ReadPersonalDataOptions) => Promise<void>;
 };
 //# sourceMappingURL=useReadPersonalData.d.ts.map

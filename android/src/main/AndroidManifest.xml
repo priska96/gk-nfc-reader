@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="expo.modules.ehcnfc">
+
+    <!-- NFC permission -->
+    <uses-permission android:name="android.permission.NFC" />
+    <application>
+        <!-- Register your module's BottomSheetActivity -->
+        <activity
+            android:name="expo.modules.ehcnfc.views.NfcBottomSheetActivity"
+            android:exported="true"
+            android:label="@string/nfc_bottom_sheet_label"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+    </application>
+</manifest>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="nfc_txt_discoveryMessage">Hold your card near the reader</string>
+    <string name="nfc_txt_connectMessage">Connecting to card...</string>
+    <string name="nfc_txt_secureChannelMessage">Establishing secure channel...</string>
+    <string name="nfc_txt_noCardMessage">No card detected</string>
+    <string name="nfc_txt_multipleCardsMessage">Multiple cards detected</string>
+    <string name="nfc_txt_unsupportedCardMessage">Unsupported card type</string>
+    <string name="nfc_txt_connectionErrorMessage">Connection failed</string>
+    <string name="nfc_txt_wrongCanMessage">Connection failed. Reason: Wrong CAN provided</string>
+    <string name="nfc_txt_unexpectedAnswerFromCardMessage">Connection failed. Reason: Unexpected answer</string>
+    <string name="nfc_txt_readingErrorMessage">Selecting and reading data failed</string>
+    <string name="nfc_txt_cancelMessage">Cancel</string>
+    <string name="nfc_txt_readingMessage">Reading data...</string>
+    <string name="nfc_txt_successMessage">Reading successful</string>
+    <string name="nfc_bottom_sheet_label">Scan your card</string>
+    <string name="nfc_txt_unknown_error">Unknown Error</string>
+    <string name="nfc_txt_error">Error</string>
+    <string name="nfc_can_error">The CAN is invalid. It should contain 6 numbers.</string>
+    <string name="no_activity_error">NFC reading could not be started. Please try again.</string>
+</resources>

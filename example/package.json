@@ -1,0 +1,40 @@
+{
+  "name": "gk-nfc-reader-example",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "cleanInstall": "rm -rf node_modules package-lock.json && npm install",
+    "prebuild:ios": "npx expo prebuild --clean --platform ios",
+    "prebuild:android": "npx expo prebuild --clean --platform android",
+    "runOnDeviceAndroid": "npx expo prebuild --clean --platform android && cp ../android/local.properties ./android/ && ./android/gradlew -p android installDebug",
+    "testExpoEhcNfc": "./android/gradlew -p android :sciendis-gk-nfc-reader:testDebugUnitTest"
+  },
+  "dependencies": {
+    "expo": "^53.0.26",
+    "expo-build-properties": "~0.14.8",
+    "expo-sqlite": "~15.2.14",
+    "react": "^19.0.0",
+    "react-native": "^0.79.6",
+    "react-native-reanimated": "~3.17.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@types/react": "~19.0.10",
+    "typescript": "~5.8.3"
+  },
+  "private": true,
+  "expo": {
+    "autolinking": {
+      "ios": {
+        "exclude": [
+          "gk-nfc-reader"
+        ]
+      },
+      "nativeModulesDir": ".."
+    }
+  }
+}

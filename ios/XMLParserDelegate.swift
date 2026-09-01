@@ -6,7 +6,6 @@
 
 import Foundation
 
-import Foundation
 
 public enum XMLParsingError: Error {
     case dataConversionFailed
@@ -31,11 +30,11 @@ class XMLDataExtractor: NSObject, XMLParserDelegate {
     var parsedData: [String: String] = [:]
     var foundCharacters: String = ""
 
-    let elementsToExtract = ["Versicherten_ID", "Geburtsdatum", "Vorname", "Nachname", "Geschlecht", "Postleitzahl", "Ort", "Strasse", "Hausnummer", "Wohnsitzlaendercode"]
+    let elementsToExtract = ["Versicherten_ID", "Geburtsdatum", "Vorname", "Nachname", "Geschlecht", "Postleitzahl", "Ort", "Strasse", "Hausnummer", "Wohnsitzlaendercode", "Titel", "Namenszusatz"]
 
     // Now the function is marked as 'throws' to propagate errors
     func parse(xmlString: String) throws -> [String: String]? {
-        guard let data = xmlString.data(using: .utf8) else {
+        guard let data = xmlString.data(using: .isoLatin1) else {
             throw XMLParsingError.dataConversionFailed
         }
 

@@ -1,0 +1,60 @@
+{
+  "expo": {
+    "name": "gk-nfc-reader-example",
+    "slug": "gk-nfc-reader-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "de.sciendis.gk"
+    },
+    "android": {
+      "minSdkVersion": 30,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "expo.modules.ehcnfc.example"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 30,
+            "targetSdkVersion": 35,
+            "kotlinVersion": "2.0.21"
+          },
+          "ios": {
+            "useFrameworks": "dynamic"
+          }
+        }
+      ],
+      [
+        "../app.plugin.js",
+        {
+          "nfcReaderUsageDescription": "NFC Test",
+          "deploymentTarget": "16.0",
+          "staticLibraryList": ["RNReanimated"],
+          "languages": ["de", "en"],
+          "minSdkVersion": 30,
+          "kotlinVersion": "2.0.21",
+          "development": true
+        }
+      ],
+      "expo-sqlite"
+    ]
+  }
+}

@@ -1,52 +1,46 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+
+import { readPersonalDataNative, statusChangeListener } from './module';
 import {
-  readPersonalDataNative,
-  eventEmitter,
   NFCReaderState,
-  State,
   ReadPersonalDataOptions,
-} from "./RNGKNFCReader";
+  State,
+} from './module/ExpoEhcNfc.types';
 
 export const useReadPersonalData = () => {
-  const [result, setResult] = useState("");
-  const [state, setState] = useState<NFCReaderState>({
+  const [nfcReaderState, setNfcReaderState] = useState<NFCReaderState>({
     state: State.idle,
     value: undefined,
     error: undefined,
   });
 
   useEffect(() => {
-    if (!eventEmitter) return;
     // Subscribe to the event emitter
-    const subscription = eventEmitter.addListener("onStatusChange", (event) => {
-      console.log("State updated:", event);
-      setState(event); // Update the local state with the received event
-    });
+    // Update the local state with the received event
+    const subscription = statusChangeListener(setNfcReaderState);
 
     // Clean up the subscription on component unmount
     return () => {
-      subscription.remove();
+      subscription?.remove();
     };
-  }, [eventEmitter]);
+  }, [statusChangeListener]);
 
-  const readPersonalData = ({
+  const readPersonalData = async ({
     can,
     pin,
     checkBrainpoolAlgorithm,
   }: ReadPersonalDataOptions) => {
-    readPersonalDataNative({
-      can,
-      pin,
-      checkBrainpoolAlgorithm,
-    })
-      .then((res: string) => {
-        setResult(res); // Store the result in state
-        console.log("success");
-      })
-      .catch((error: unknown) => {
-        console.log("error", error);
+    try {
+      const res = await readPersonalDataNative({
+        can,
+        pin,
+        checkBrainpoolAlgorithm,
       });
+      console.log('success res:', res);
+    } catch (error: unknown) {
+      console.log('error', error);
+    }
   };
 
-  return { result, state, readPersonalData };
+  return { nfcReaderState, readPersonalData };
 };
